@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\"",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,10 +20,8 @@
     "url": "https://github.com/ShotaTogawa/second-project/issues"
   },
   "homepage": "https://github.com/ShotaTogawa/second-project#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.2"
-  },
   "dependencies": {
+    "apollo-server": "^2.9.15",
     "apollo-server-express": "^2.9.15",
     "bcrpyt": "^2.0.0",
     "concurrently": "^5.0.2",
@@ -31,5 +32,8 @@
     "graphql-tools": "^4.0.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
