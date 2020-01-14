@@ -1,0 +1,14 @@
+.HomeTitle {
+  width: 100%;
+  margin: 0.5rem 1rem;
+}
+
+.HomePostForm {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.HomeTimeLine {
+  width: 95%;
+  margin: 1.5rem auto 0 auto;
+}
