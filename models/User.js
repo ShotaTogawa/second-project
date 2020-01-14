@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema(
   {
@@ -19,6 +20,18 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String
+    },
+    joinedDate: {
+      type: Date,
+      default: Date.now()
+    },
+    favorites: {
+      type: [Schema.Types.ObjectId],
+      ref: "Tweet"
+    },
+    friends: {
+      type: [Schema.Types.ObjectId],
+      ref: "User"
     }
   },
   { timestamps: true }
