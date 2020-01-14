@@ -7,7 +7,7 @@
     "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\"",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest ./test/* --watch"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "dependencies": {
     "apollo-server": "^2.9.15",
     "apollo-server-express": "^2.9.15",
-    "bcrpyt": "^2.0.0",
+    "bcrypt": "^3.0.7",
     "concurrently": "^5.0.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -34,6 +34,8 @@
     "mongoose": "^5.8.6"
   },
   "devDependencies": {
+    "apollo-server-testing": "^2.9.15",
+    "jest": "^24.9.0",
     "nodemon": "^2.0.2"
   }
 }
