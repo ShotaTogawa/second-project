@@ -13,7 +13,6 @@ const createToken = (user, secret, expiresIn) => {
 
 module.exports = {
   Query: {
-    hello: () => "Hello world!",
     // user
     getCurrentUser: async (parent, _, { currentUser }) => {
       const user = await User.findOne({ email: currentUser.email });
@@ -87,7 +86,10 @@ module.exports = {
     // user
     deleteUser: async (parent, { _id }, ctx) => {
       try {
-        return await User.findByIdAndDelete(_id);
+        await User.findByIdAndDelete(_id);
+        await Tweet.deleteMany({ userId: _id });
+        await Comment.deleteMany({ userId: _id });
+        await Result.deleteMany({ userId: _id });
       } catch (e) {
         console.log(e);
       }
