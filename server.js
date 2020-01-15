@@ -44,7 +44,6 @@ const server = new ApolloServer({
       authToken = req.headers.authorization;
       if (authToken) {
         currentUser = await jwt.verify(authToken, process.env.SECRET);
-        console.log("kdofako", currentUser);
         req.currentUser = currentUser;
       }
     } catch (e) {
