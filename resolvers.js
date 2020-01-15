@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("./models/User");
 const Tweet = require("./models/Tweet");
+const Comment = require("./models/Comment");
+const Result = require("./models/Result");
 
 const createToken = (user, secret, expiresIn) => {
   return jwt.sign({ email: user.email }, secret, {
@@ -33,14 +35,28 @@ module.exports = {
       return tweets;
     },
     getPublicTweets: async (parent, args, ctx) => {
-      const tweets = await Tweet.find({public: true}).sort({ createdAt: "desc" });
+      const tweets = await Tweet.find({ public: true }).sort({
+        createdAt: "desc"
+      });
       return tweets;
     },
     // comment
-    getComments: () => {},
+    getComments: async (parent, { tweetId }, ctx) => {
+      const comments = await Comment.find({ tweetId }).sort({
+        createdAt: "desc"
+      });
+      return comments;
+    },
     // result
-    getResult: () => {},
-    getResults: () => {}
+    getResult: async (parent, { tweetId }, ctx) => {
+      const result = await Result.findOne({ tweetId });
+      console.log(result);
+      return result;
+    },
+    getResults: async (parent, { userId }, ctx) => {
+      const results = await Result.find({ userId });
+      return results;
+    }
   },
   Mutation: {
     // auth
@@ -69,6 +85,13 @@ module.exports = {
       return { token: createToken(user, process.env.SECRET, "1hr") };
     },
     // user
+    deleteUser: async (parent, { _id }, ctx) => {
+      try {
+        return await User.findByIdAndDelete(_id);
+      } catch (e) {
+        console.log(e);
+      }
+    },
 
     // tweet
     postTweet: async (parent, args, { currentUser }) => {
@@ -78,7 +101,8 @@ module.exports = {
       try {
         const tweet = await new Tweet({
           userId: args.userId,
-          tweet: args.tweet
+          tweet: args.tweet,
+          tag: args.tag
         }).save();
 
         return tweet;
@@ -104,16 +128,101 @@ module.exports = {
       try {
         const tweet = await Tweet.findOneAndUpdate(
           { _id: args._id },
-          { tweet: args.tweet }
+          { tweet: args.tweet, tag: args.tag }
         );
 
         return tweet;
       } catch (e) {
         console.error(e);
       }
-    }
+    },
     // comment
-
+    addComment: async (
+      parent,
+      { userId, tweetId, comment },
+      { currentUser }
+    ) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      try {
+        const userComment = await new Comment({
+          userId,
+          tweetId,
+          comment
+        }).save();
+        if (!comment) {
+          throw new Error("Failed to comment");
+        }
+        return userComment;
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    deleteComment: async (parent, { _id }, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      await Comment.findByIdAndDelete(_id);
+    },
+    editComment: async (parent, { _id, comment }, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      try {
+        const editedComment = await Comment.findByIdAndUpdate(
+          { _id },
+          { comment }
+        );
+        return editedComment;
+      } catch (e) {
+        console.error(e);
+      }
+    },
     // result
+    addResult: async (
+      parent,
+      { userId, tweetId, description },
+      { currentUser }
+    ) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+
+      try {
+        const result = await new Result({
+          userId,
+          tweetId,
+          description
+        }).save();
+        return result;
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    deleteResult: async (parent, { _id }, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      return await Result.findByIdAndRemove(_id);
+    },
+    updateResult: async (
+      parent,
+      { _id, status, description, done },
+      { currentUser }
+    ) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      try {
+        const result = await Result.findByIdAndUpdate(
+          { _id },
+          { status, description, done }
+        );
+        return result;
+      } catch (e) {
+        console.error(e);
+      }
+    }
   }
 };

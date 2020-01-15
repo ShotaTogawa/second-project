@@ -9,6 +9,7 @@ const resultSchema = new Schema(
     },
     tweetId: {
       type: Schema.Types.Object,
+      unique: true,
       required: true
     },
     description: {

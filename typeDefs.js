@@ -24,6 +24,7 @@ module.exports = gql`
     commentId: String!
     resultId: String
     public: Boolean
+    tag: String
     createdAt: String!
   }
 
@@ -32,6 +33,7 @@ module.exports = gql`
     userId: String!
     tweetId: String!
     comment: String!
+    createdAt: String
   }
 
   type Result {
@@ -40,6 +42,7 @@ module.exports = gql`
     tweetId: String!
     done: Boolean!
     description: String!
+    createdAt: String
   }
 
   type Query {
@@ -56,13 +59,14 @@ module.exports = gql`
   type Mutation {
     signinUser(email: String!, password: String!): Token
     signupUser(name: String!, email: String!, password: String!): Token
-    postTweet(userId: String!, tweet: String!): Tweet
+    deleteUser(_id: ID!): User
+    postTweet(userId: String!, tweet: String!, tag: String): Tweet
     deleteTweet(_id: ID!): Tweet
-    editTweet(_id: ID!, tweet: String!): Tweet
+    editTweet(_id: ID!, tweet: String!, tag: String): Tweet
     addComment(userId: String!, tweetId: String!, comment: String!): Comment
     deleteComment(_id: ID!): Comment
     editComment(_id: ID!, comment: String!): Comment
-    addResult(tweetId: String!, description: String!): Result
+    addResult(userId: String!, tweetId: String!, description: String!): Result
     deleteResult(_id: ID!): Result
     updateResult(
       _id: ID!
