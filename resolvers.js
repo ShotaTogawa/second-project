@@ -15,6 +15,9 @@ module.exports = {
   Query: {
     // user
     getCurrentUser: async (parent, _, { currentUser }) => {
+      if (!currentUser) {
+        return null;
+      }
       const user = await User.findOne({ email: currentUser.email });
       return user;
     },
