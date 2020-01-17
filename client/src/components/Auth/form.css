@@ -1,0 +1,19 @@
+div.FormContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+div.FormBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30rem;
+  height: 31rem;
+  margin: 3.5rem 0;
+  padding: 2rem 5rem 0 5rem;
+  background: rgba(176, 224, 231, 0.2);
+  border: 2px #fff solid;
+  border-radius: 1rem;
+}
