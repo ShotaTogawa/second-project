@@ -21,9 +21,7 @@ class Navbar extends Component {
                 style={classes.NavbarItem}
                 onClick={() => this.handleSignout(client)}
               >
-                <Link to="/signup" style={{ color: "#fff" }}>
-                  Signout
-                </Link>
+                <span style={{ cursor: "pointer" }}>Signout</span>
               </li>
             );
           }}
@@ -35,7 +33,7 @@ class Navbar extends Component {
   handleSignout = client => {
     localStorage.removeItem("token");
     client.resetStore();
-    this.props.history.push("/mypage");
+    this.props.history.push("/");
   };
 
   renderNavbarUnauth = () => (
@@ -65,7 +63,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="NavbarContainer" style={classes.NavbarContainer}>
-        {localStorage.getItem("token")
+        {this.props.session && this.props.session.getCurrentUser
           ? this.renderNavbarAuth()
           : this.renderNavbarUnauth()}
       </nav>

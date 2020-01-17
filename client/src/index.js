@@ -44,7 +44,7 @@ const Root = ({ refetch, session }) => (
   <Router>
     <Navbar session={session} />
     <Switch>
-      <Route path="/" exact component={App} session={session} />
+      <Route path="/" exact render={() => <App session={session} />} />
       <Route path="/signup" render={() => <Signup refetch={refetch} />} />
       <Route path="/signin" render={() => <Signin refetch={refetch} />} />
       <Route path="/mypage" exact render={() => <MyPage session={session} />} />

@@ -31,8 +31,7 @@ class Signin extends Component {
     signinUser()
       .then(async ({ data }) => {
         localStorage.setItem("token", data.signinUser.token);
-        console.log(data);
-        await this.props.refetch;
+        await this.props.refetch();
         this.clearState();
         this.props.history.push("/");
       })

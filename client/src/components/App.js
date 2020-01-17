@@ -24,7 +24,13 @@ class App extends Component {
 
   render() {
     console.log(this.props.session);
-    return <>{this.props.session ? this.authTop() : this.unAuthTop()}</>;
+    return (
+      <>
+        {this.props.session && this.props.session.getCurrentUser
+          ? this.authTop()
+          : this.unAuthTop()}
+      </>
+    );
   }
 }
 

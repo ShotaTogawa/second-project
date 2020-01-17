@@ -51,7 +51,7 @@ class Signup extends Component {
     signupUser()
       .then(async ({ data }) => {
         localStorage.setItem("token", data.signupUser.token);
-        await this.props.refetch;
+        await this.props.refetch();
         this.clearState();
         this.props.history.push("/");
       })
