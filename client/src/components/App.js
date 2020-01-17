@@ -1,11 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
 import classes from "./App.css";
 import MenuList from "./MenuList/MenuList";
 import TimeLine from "./TimeLine/TimeLine";
 import Friends from "./Friends/Friends";
+import { withRouter } from "react-router-dom";
 
-const App = () => {
-  return (
+class App extends Component {
+  authTop = () => (
     <div className="AppContainer" stype={classes.AppContainer}>
       <div className="MenuContainer" style={classes.MenuContainer}>
         <MenuList />
@@ -18,6 +19,13 @@ const App = () => {
       </div>
     </div>
   );
-};
 
-export default App;
+  unAuthTop = () => <div>Top</div>;
+
+  render() {
+    console.log(this.props.session);
+    return <>{this.props.session ? this.authTop() : this.unAuthTop()}</>;
+  }
+}
+
+export default withRouter(App);
