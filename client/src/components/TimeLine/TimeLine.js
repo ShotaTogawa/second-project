@@ -40,6 +40,76 @@ class TimeLine extends Component {
             <Button color="teal" floated="right" size="mini">
               Update
             </Button>
+            <Feed.Event
+              image="/images/avatar/small/elliot.jpg"
+              content="You added Elliot Fu to the group Coworkers"
+            />
+            <Button color="blue" floated="right" size="mini">
+              Result
+            </Button>
+            <Button color="teal" floated="right" size="mini">
+              Update
+            </Button>
+            <Feed.Event
+              image="/images/avatar/small/elliot.jpg"
+              content="You added Elliot Fu to the group Coworkers"
+            />
+            <Button color="blue" floated="right" size="mini">
+              Result
+            </Button>
+            <Button color="teal" floated="right" size="mini">
+              Update
+            </Button>
+            <Feed.Event
+              image="/images/avatar/small/elliot.jpg"
+              content="You added Elliot Fu to the group Coworkers"
+            />
+            <Button color="blue" floated="right" size="mini">
+              Result
+            </Button>
+            <Button color="teal" floated="right" size="mini">
+              Update
+            </Button>
+            <Feed.Event
+              image="/images/avatar/small/elliot.jpg"
+              content="You added Elliot Fu to the group Coworkers"
+            />
+            <Button color="blue" floated="right" size="mini">
+              Result
+            </Button>
+            <Button color="teal" floated="right" size="mini">
+              Update
+            </Button>
+            <Feed.Event
+              image="/images/avatar/small/elliot.jpg"
+              content="You added Elliot Fu to the group Coworkers"
+            />
+            <Button color="blue" floated="right" size="mini">
+              Result
+            </Button>
+            <Button color="teal" floated="right" size="mini">
+              Update
+            </Button>
+            <Feed.Event
+              image="/images/avatar/small/elliot.jpg"
+              content="You added Elliot Fu to the group Coworkers"
+            />
+            <Button color="blue" floated="right" size="mini">
+              Result
+            </Button>
+            <Button color="teal" floated="right" size="mini">
+              Update
+            </Button>
+            <Feed.Event
+              image="/images/avatar/small/elliot.jpg"
+              content="You added Elliot Fu to the group Coworkers"
+            />
+            <Button color="blue" floated="right" size="mini">
+              Result
+            </Button>
+            <Button color="teal" floated="right" size="mini">
+              Update
+            </Button>
           </Feed>
         </div>
       </div>

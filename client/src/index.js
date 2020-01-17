@@ -11,6 +11,7 @@ import { ApolloProvider } from "react-apollo";
 import "./index.css";
 import "semantic-ui-css/semantic.min.css";
 import App from "./components/App";
+import Navbar from "./components/Navbar/Navbar";
 import * as serviceWorker from "./serviceWorker";
 
 const client = new ApolloClient({
@@ -37,6 +38,7 @@ const client = new ApolloClient({
 
 const Root = () => (
   <Router>
+    <Navbar />
     <Switch>
       <Route path="/" exact component={App} />
     </Switch>
