@@ -18,7 +18,7 @@ import Signup from "./components/Auth/Signup";
 import Signin from "./components/Auth/Signin";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4444/graphql",
+  uri: "http://localhost:4000/graphql",
   fetchOptions: {
     credentials: "include"
   },
@@ -46,6 +46,7 @@ const Root = ({ refetch, session }) => (
       <Route path="/" exact component={App} />
       <Route path="/signup" render={() => <Signup refetch={refetch} />} />
       <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+      <Redirect to="/" />
     </Switch>
   </Router>
 );

@@ -6,13 +6,20 @@ export const GET_CURRENT_USER = gql`
   query {
     getCurrentUser {
       _id
-      username
+      name
       email
     }
   }
 `;
 
 /* User's mutations */
+export const SIGNUP_USER = gql`
+  mutation($name: String!, $email: String!, $password: String!) {
+    signupUser(name: $name, email: $email, password: $password) {
+      token
+    }
+  }
+`;
 
 /* Tweet's query */
 

@@ -12,6 +12,7 @@ require("./db/mongoose");
 const PORT = 4000;
 
 const app = express();
+const path = "/graphql";
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -19,20 +20,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// app.use(async (req, res, next) => {
-//   const token = req.headers["authorization"];
-//   if (token !== null) {
-//     try {
-//       const currentUser = await jwt.verify(token, process.env.SECRET);
-//       req.currentUser = currentUser;
-//       console.log("current", currentUser);
-//     } catch (e) {
-//       console.error(e);
-//     }
-//   }
-//   next();
-// });
 
 const server = new ApolloServer({
   typeDefs,
@@ -44,7 +31,8 @@ const server = new ApolloServer({
       authToken = req.headers.authorization;
       if (authToken) {
         currentUser = await jwt.verify(authToken, process.env.SECRET);
-        req.currentUser = currentUser;
+        // req.currentUser = currentUser;
+        // console.log(req.currentUser);
       }
     } catch (e) {
       console.error(`Unable to authenticate user with token ${authToken}`);
@@ -52,6 +40,15 @@ const server = new ApolloServer({
     return { currentUser };
   }
 });
-server.applyMiddleware({ app });
+
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+server.applyMiddleware({ app, path });
 
 app.listen(PORT, () => console.log(`listening ${PORT}`));

@@ -49,7 +49,6 @@ module.exports = {
     // result
     getResult: async (parent, { tweetId }, ctx) => {
       const result = await Result.findOne({ tweetId });
-      console.log(result);
       return result;
     },
     getResults: async (parent, { userId }, ctx) => {

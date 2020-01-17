@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import classes from "./navbar.css";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   renderNavbarAuth = () => (
@@ -23,13 +24,19 @@ class Navbar extends Component {
       <Fragment>
         <ul className="NavbarList" style={classes.NavbarList}>
           <li className="NavbarItem" style={classes.NavbarItem}>
-            Home
+            <Link to="/" style={{ color: "#fff" }}>
+              Home
+            </Link>
           </li>
           <li className="NavbarItem" style={classes.NavbarItem}>
-            Signin
+            <Link to="/signin" style={{ color: "#fff" }}>
+              Signin
+            </Link>
           </li>
           <li className="NavbarItem" style={classes.NavbarItem}>
-            Signup
+            <Link to="/signup" style={{ color: "#fff" }}>
+              Signup
+            </Link>
           </li>
         </ul>
       </Fragment>
