@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./App.css";
-import MenuList from "./components/MenuList/MenuList";
-import TimeLine from "./components/TimeLine/TimeLine";
-import Friends from "./components/Friends/Friends";
+import MenuList from "./MenuList/MenuList";
+import TimeLine from "./TimeLine/TimeLine";
+import Friends from "./Friends/Friends";
 
 const App = () => {
   return (
