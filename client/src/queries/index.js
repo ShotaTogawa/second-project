@@ -21,6 +21,14 @@ export const SIGNUP_USER = gql`
   }
 `;
 
+export const SIGNIN_USER = gql`
+  mutation($email: String!, $password: String!) {
+    signinUser(email: $email, password: $password) {
+      token
+    }
+  }
+`;
+
 /* Tweet's query */
 
 /* Tweet's mutations */

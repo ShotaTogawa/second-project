@@ -35,6 +35,17 @@ class Signup extends Component {
     return false;
   };
 
+  passwordMatched = () => {
+    const { password, passwordConfirmation } = this.state;
+    if (password && passwordConfirmation) {
+      if (password === passwordConfirmation) {
+        return true;
+      } else {
+        this.setState({ errorMessage: "Password is not matched" });
+      }
+    }
+  };
+
   handleSubmit = (event, signupUser) => {
     event.preventDefault();
     signupUser()
@@ -128,6 +139,7 @@ class Signup extends Component {
                     </Button>
                   </Form>
                   {error && <Error error={error} />}
+                  {errorMessage}
                 </Fragment>
               );
             }}
