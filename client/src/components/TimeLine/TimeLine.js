@@ -1,114 +1,30 @@
 import React, { Component } from "react";
 import classes from "./timeline.css";
-import { Form, TextArea, Feed, Button } from "semantic-ui-react";
+import { Feed, Button } from "semantic-ui-react";
+// import TweetForm from "../SideBar.js/TweetForm";
 
 class TimeLine extends Component {
   render() {
     return (
       <div>
         <div className="HomeTitle" style={classes.HomeTitle}>
-          <h2>Home</h2>
+          <h2>Trails</h2>
         </div>
-        <div className="HomePostForm" style={classes.HomePostForm}>
-          <Form>
-            <Form.Field
-              control={TextArea}
-              label="Your commit"
-              placeholder="Tell us more about you..."
-            />
-          </Form>
-        </div>
+        {/* <TweetForm /> */}
         <div className="HomeTimeLine">
           <Feed>
             <Feed.Event
               image="/images/avatar/small/elliot.jpg"
               content="You added Elliot Fu to the group Coworkers"
             />
-            <Button color="blue" floated="right" size="mini">
-              Result
+            <Button color="red" floated="right" size="mini">
+              Delete
             </Button>
             <Button color="teal" floated="right" size="mini">
-              Update
+              Edit
             </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
             <Button color="blue" floated="right" size="mini">
               Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
-            </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
-            <Button color="blue" floated="right" size="mini">
-              Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
-            </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
-            <Button color="blue" floated="right" size="mini">
-              Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
-            </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
-            <Button color="blue" floated="right" size="mini">
-              Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
-            </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
-            <Button color="blue" floated="right" size="mini">
-              Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
-            </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
-            <Button color="blue" floated="right" size="mini">
-              Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
-            </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
-            <Button color="blue" floated="right" size="mini">
-              Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
-            </Button>
-            <Feed.Event
-              image="/images/avatar/small/elliot.jpg"
-              content="You added Elliot Fu to the group Coworkers"
-            />
-            <Button color="blue" floated="right" size="mini">
-              Result
-            </Button>
-            <Button color="teal" floated="right" size="mini">
-              Update
             </Button>
           </Feed>
         </div>

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { Search, List } from "semantic-ui-react";
-import classes from "./friends.css";
+import classes from "./sidebar.css";
 
-class Friends extends Component {
+class FriendSearch extends Component {
   render() {
     return (
-      <div>
-        <div className="FriendsSearch" style={classes.FriendsSearch}>
-          <Search />
-        </div>
+      <>
         <div className="FriendsList" style={classes.FriendsList}>
-          <List divided relaxed>
+          <Search />
+          <List divided relaxed width="10">
             <List.Item>
               <List.Icon name="github" size="large" verticalAlign="middle" />
               <List.Content>
@@ -31,9 +29,9 @@ class Friends extends Component {
             </List.Item>
           </List>
         </div>
-      </div>
+      </>
     );
   }
 }
 
-export default Friends;
+export default FriendSearch;

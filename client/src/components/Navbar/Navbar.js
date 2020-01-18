@@ -13,6 +13,12 @@ class Navbar extends Component {
         <li className="NavbarItem" style={classes.NavbarItem}>
           UserName
         </li>
+        <li className="NavbarItem" style={classes.NavbarItem}>
+          Post
+        </li>
+        <li className="NavbarItem" style={classes.NavbarItem}>
+          Trail
+        </li>
         <ApolloConsumer>
           {client => {
             return (
