@@ -30,8 +30,57 @@ export const SIGNIN_USER = gql`
 `;
 
 /* Tweet's query */
+export const GET_PUBLIC_TWEETS = gql`
+  query {
+    getPublicTweets {
+      _id
+      likes
+      tweet
+      tag
+    }
+  }
+`;
+
+export const GET_TWEET = gql`
+  query($_id: ID!) {
+    getTweet(_id: $_id) {
+      _id
+      tweet
+      tag
+      public
+    }
+  }
+`;
 
 /* Tweet's mutations */
+export const POST_TWEET = gql`
+  mutation($userId: String!, $tweet: String!, $tag: String, $public: Boolean) {
+    postTweet(userId: $userId, tweet: $tweet, tag: $tag, public: $public) {
+      userId
+      tweet
+      tag
+      public
+    }
+  }
+`;
+
+export const UPDATE_TWEET = gql`
+  mutation($_id: ID!, $tweet: String!, $tag: String) {
+    editTweet(_id: $_id, tweet: $tweet, tag: $tag) {
+      _id
+      tweet
+      tag
+    }
+  }
+`;
+
+export const DELETE_TWEET = gql`
+  mutation($_id: ID!) {
+    deleteTweet(_id: $_id) {
+      _id
+    }
+  }
+`;
 
 /* Comment's query */
 

@@ -16,7 +16,9 @@ import * as serviceWorker from "./serviceWorker";
 import WithSession from "./components/WithSession";
 import Signup from "./components/Auth/Signup";
 import Signin from "./components/Auth/Signin";
-import MyPage from "./components/MyPage/MyPage";
+import TweetForm from "./components/Post/TweetForm";
+import TweetUpdateForm from "./components/Post/TweetUpdateForm";
+// import MyPage from "./components/MyPage/MyPage";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -44,10 +46,22 @@ const Root = ({ refetch, session }) => (
   <Router>
     <Navbar session={session} />
     <Switch>
+      {/* session is from withSession. */}
       <Route path="/" exact render={() => <App session={session} />} />
+      {/* refetch is from react-apollo. */}
       <Route path="/signup" render={() => <Signup refetch={refetch} />} />
       <Route path="/signin" render={() => <Signin refetch={refetch} />} />
-      <Route path="/mypage" exact render={() => <MyPage session={session} />} />
+      {/* <Route path="/mypage" exact render={() => <MyPage session={session} />} /> */}
+      <Route
+        path="/post"
+        exact
+        render={() => <TweetForm session={session} />}
+      />
+      <Route
+        path="/post/edit/:id"
+        exact
+        render={() => <TweetUpdateForm session={session} />}
+      />
       <Redirect to="/" />
     </Switch>
   </Router>

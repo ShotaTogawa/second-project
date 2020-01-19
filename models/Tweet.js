@@ -24,6 +24,9 @@ const tweetSchema = new Schema(
     public: {
       type: Boolean,
       default: false
+    },
+    tag: {
+      type: String
     }
   },
   {

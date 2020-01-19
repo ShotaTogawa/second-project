@@ -1,14 +1,21 @@
 .HomeTitle {
   width: 100%;
-  margin: 0.5rem 1rem;
-}
-
-.HomePostForm {
-  width: 95%;
-  margin: 0 auto;
+  margin: 2rem 1rem;
 }
 
 .HomeTimeLine {
   width: 95%;
   margin: 1.5rem auto 0 auto;
+  padding: 1rem;
+  background-color: rgb(203, 234, 248, 0.2);
+}
+
+.Tag {
+  width: auto;
+  font-size: 0.8rem;
+  height: 1.5rem;
+  color: #fff;
+  background-color: #c2f7f0;
+  border-radius: 1rem;
+  padding: 0 0.3rem;
 }

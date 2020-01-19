@@ -2,25 +2,20 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 90%;
-  margin: auto 3rem;
-}
-
-.MenuContainer {
-  display: flex;
-  width: 20%;
-  background-color: palegreen;
+  width: 100%;
+  margin: auto 1rem;
 }
 
 .TimeLineContainer {
   display: flex;
   flex-direction: column;
   width: 60%;
-  background-color: palegoldenrod;
+  margin: 0 auto;
 }
 
-.FriendsContainer {
+.SideContainer {
   display: flex;
-  width: 20%;
-  background-color: palevioletred;
+  flex-direction: column;
+  width: 30%;
+  border-right: 2px solid rgb(158, 174, 194);
 }

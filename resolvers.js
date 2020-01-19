@@ -106,7 +106,8 @@ module.exports = {
         const tweet = await new Tweet({
           userId: args.userId,
           tweet: args.tweet,
-          tag: args.tag
+          tag: args.tag,
+          public: args.public
         }).save();
 
         return tweet;
