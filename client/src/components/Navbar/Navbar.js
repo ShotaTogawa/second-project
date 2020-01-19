@@ -14,7 +14,7 @@ class Navbar extends Component {
           UserName
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
-          Post
+          <Link to="/post">Post</Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
           Trail

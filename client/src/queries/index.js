@@ -32,6 +32,16 @@ export const SIGNIN_USER = gql`
 /* Tweet's query */
 
 /* Tweet's mutations */
+export const POST_TWEET = gql`
+  mutation($userId: String!, $tweet: String!, $tag: String, $public: Boolean) {
+    postTweet(userId: $userId, tweet: $tweet, tag: $tag, public: $public) {
+      userId
+      tweet
+      tag
+      public
+    }
+  }
+`;
 
 /* Comment's query */
 

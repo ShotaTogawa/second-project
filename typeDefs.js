@@ -60,7 +60,12 @@ module.exports = gql`
     signinUser(email: String!, password: String!): Token
     signupUser(name: String!, email: String!, password: String!): Token
     deleteUser(_id: ID!): User
-    postTweet(userId: String!, tweet: String!, tag: String): Tweet
+    postTweet(
+      userId: String!
+      tweet: String!
+      tag: String
+      public: Boolean
+    ): Tweet
     deleteTweet(_id: ID!): Tweet
     editTweet(_id: ID!, tweet: String!, tag: String): Tweet
     addComment(userId: String!, tweetId: String!, comment: String!): Comment
