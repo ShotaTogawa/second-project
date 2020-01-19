@@ -26,7 +26,7 @@ class TweetForm extends Component {
   handleSubmit = (event, postTweet) => {
     event.preventDefault();
     postTweet()
-      .then(async () => {
+      .then(({ data }) => {
         this.props.history.push("/");
       })
       .catch(e => {
@@ -34,7 +34,6 @@ class TweetForm extends Component {
       });
   };
   render() {
-    // const { _id } = this.props.session;
     const { tweet, tag, isPublic } = this.state;
     const { _id } = this.props.session.getCurrentUser;
     return (
@@ -54,7 +53,6 @@ class TweetForm extends Component {
                     content={this.state.tweet}
                     events={{ change: this.handleTweetChange }}
                   />
-                  {/* <div dangerouslySetInnerHTML={{ __html: 取得するデータ}} /> */}
                   <Form.Field width="5">
                     <label>Tag</label>
                     <input

@@ -17,6 +17,7 @@ import WithSession from "./components/WithSession";
 import Signup from "./components/Auth/Signup";
 import Signin from "./components/Auth/Signin";
 import TweetForm from "./components/Post/TweetForm";
+import TweetUpdateForm from "./components/Post/TweetUpdateForm";
 // import MyPage from "./components/MyPage/MyPage";
 
 const client = new ApolloClient({
@@ -55,6 +56,11 @@ const Root = ({ refetch, session }) => (
         path="/post"
         exact
         render={() => <TweetForm session={session} />}
+      />
+      <Route
+        path="/post/edit/:id"
+        exact
+        render={() => <TweetUpdateForm session={session} />}
       />
       <Redirect to="/" />
     </Switch>

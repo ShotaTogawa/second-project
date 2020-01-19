@@ -8,13 +8,17 @@ class Navbar extends Component {
     <Fragment>
       <ul className="NavbarList" style={classes.NavbarList}>
         <li className="NavbarItem" style={classes.NavbarItem}>
-          Home
+          <Link to="/" style={{ color: "#fff" }}>
+            Home
+          </Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
           UserName
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
-          <Link to="/post">Post</Link>
+          <Link to="/post" style={{ color: "#fff" }}>
+            Post
+          </Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
           Trail
