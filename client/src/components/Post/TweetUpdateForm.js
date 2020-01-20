@@ -4,7 +4,7 @@ import classes from "./tweet.css";
 import CKEditor from "react-ckeditor-component";
 import { Query, Mutation } from "react-apollo";
 import Loading from "../Loading";
-import { GET_TWEET, UPDATE_TWEET } from "../../queries";
+import { GET_TWEET, UPDATE_TWEET, GET_PUBLIC_TWEETS } from "../../queries";
 import { withRouter, Link } from "react-router-dom";
 import Error from "../Error";
 
@@ -21,6 +21,16 @@ class TweetUpdateForm extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  updateCach = (cache, { data: { editTweet } }) => {
+    const { getPublicTweets } = cache.readQuery({ query: GET_PUBLIC_TWEETS });
+    cache.writeQuery({
+      query: GET_PUBLIC_TWEETS,
+      data: {
+        getPublicTweets: getPublicTweets.concat([editTweet])
+      }
+    });
   };
 
   handleSubmit = (event, editTweet) => {
@@ -54,6 +64,8 @@ class TweetUpdateForm extends Component {
                     tag: updateTag,
                     public: isPublic
                   }}
+                  refetchQueries={() => [{ query: GET_PUBLIC_TWEETS }]}
+                  update={this.updateCach}
                 >
                   {(editTweet, { data, loading, error }) => {
                     if (loading) return <Loading />;

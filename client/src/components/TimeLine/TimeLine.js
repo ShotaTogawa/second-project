@@ -98,6 +98,26 @@ class TimeLine extends Component {
                                   icon="edit"
                                 />
                               </Link>
+                              <Link to={`/result/${tweet._id}`}>
+                                <Button
+                                  color="olive"
+                                  floated="right"
+                                  size="mini"
+                                  circular
+                                >
+                                  Result
+                                </Button>
+                              </Link>
+                              <Link to={`/result/update/${tweet._id}`}>
+                                <Button
+                                  color="olive"
+                                  floated="right"
+                                  size="mini"
+                                  circular
+                                >
+                                  Add Result
+                                </Button>
+                              </Link>
                             </>
                           ) : (
                             ""
