@@ -44,6 +44,7 @@ module.exports = gql`
     done: Boolean!
     description: String!
     createdAt: String
+    image: String
   }
 
   type Query {
@@ -72,7 +73,13 @@ module.exports = gql`
     addComment(userId: String!, tweetId: String!, comment: String!): Comment
     deleteComment(_id: ID!): Comment
     editComment(_id: ID!, comment: String!): Comment
-    addResult(userId: String!, tweetId: String!, description: String!): Result
+    addResult(
+      userId: String!
+      tweetId: String!
+      description: String!
+      done: Boolean
+      image: String
+    ): Result
     deleteResult(_id: ID!): Result
     updateResult(
       _id: ID!

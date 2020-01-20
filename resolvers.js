@@ -40,6 +40,7 @@ module.exports = {
       const tweets = await Tweet.find({ public: true }).sort({
         createdAt: "desc"
       });
+
       return tweets;
     },
     // comment
@@ -187,7 +188,7 @@ module.exports = {
     // result
     addResult: async (
       parent,
-      { userId, tweetId, description },
+      { userId, tweetId, description, done, image },
       { currentUser }
     ) => {
       if (!currentUser) {
@@ -198,8 +199,15 @@ module.exports = {
         const result = await new Result({
           userId,
           tweetId,
-          description
+          description,
+          done,
+          image
         }).save();
+
+        await Tweet.findByIdAndUpdate(
+          { _id: tweetId },
+          { resultId: result._id }
+        );
         return result;
       } catch (e) {
         console.error(e);
