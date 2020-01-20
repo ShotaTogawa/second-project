@@ -19,7 +19,7 @@ import Signin from "./components/Auth/Signin";
 import TweetForm from "./components/Post/TweetForm";
 import TweetUpdateForm from "./components/Post/TweetUpdateForm";
 import Result from "./components/Result/Result";
-// import MyPage from "./components/MyPage/MyPage";
+import ResultForm from "./components/Result/ResultForm";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -64,9 +64,14 @@ const Root = ({ refetch, session }) => (
         render={() => <TweetUpdateForm session={session} />}
       />
       <Route
-        path="/result/:resultId"
+        path="/result/:tweetId"
         exact
         render={() => <Result session={session} />}
+      />
+      <Route
+        path="/result/update/:tweetId"
+        exact
+        render={() => <ResultForm session={session} />}
       />
       <Redirect to="/" />
     </Switch>

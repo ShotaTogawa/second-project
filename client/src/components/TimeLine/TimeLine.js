@@ -35,6 +35,7 @@ class TimeLine extends Component {
               {({ data, loading, error }) => {
                 if (loading) return <Loading />;
                 return data.getPublicTweets.map(tweet => {
+                  console.log(tweet);
                   return (
                     <Fragment key={tweet._id}>
                       <Feed.Event>
@@ -63,7 +64,7 @@ class TimeLine extends Component {
                           </Feed.Summary>
                         </Feed.Content>
                         <Feed.Meta>
-                          {this.props.userId !== tweet.userId ? (
+                          {this.props.userId === tweet.userId ? (
                             <>
                               <Mutation
                                 mutation={DELETE_TWEET}
@@ -98,27 +99,33 @@ class TimeLine extends Component {
                                   icon="edit"
                                 />
                               </Link>
-                              <Link to={`/result/${tweet._id}`}>
-                                <Button
-                                  color="olive"
-                                  floated="right"
-                                  size="mini"
-                                  circular
-                                >
-                                  Result
-                                </Button>
-                              </Link>
-                              <Link to={`/result/update/${tweet._id}`}>
-                                <Button
-                                  color="olive"
-                                  floated="right"
-                                  size="mini"
-                                  circular
-                                >
-                                  Add Result
-                                </Button>
-                              </Link>
                             </>
+                          ) : (
+                            ""
+                          )}
+                          {tweet.resultId ? (
+                            <Link to={`/result/${tweet._id}`}>
+                              <Button
+                                color="olive"
+                                floated="right"
+                                size="mini"
+                                circular
+                              >
+                                Result
+                              </Button>
+                            </Link>
+                          ) : !tweet.resultId &&
+                            tweet.userId === this.props.userId ? (
+                            <Link to={`/result/update/${tweet._id}`}>
+                              <Button
+                                color="olive"
+                                floated="right"
+                                size="mini"
+                                circular
+                              >
+                                Add Result
+                              </Button>
+                            </Link>
                           ) : (
                             ""
                           )}

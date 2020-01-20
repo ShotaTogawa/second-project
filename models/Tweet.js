@@ -19,7 +19,8 @@ const tweetSchema = new Schema(
       type: Schema.Types.ObjectId
     },
     resultId: {
-      type: Schema.Types.ObjectId
+      type: Schema.Types.ObjectId,
+      ref: "Result"
     },
     public: {
       type: Boolean,

@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const resultSchema = new Schema(
   {
     userId: {
-      type: Schema.Types.Object,
+      type: String,
       required: true
     },
     tweetId: {
-      type: Schema.Types.Object,
+      type: String,
       unique: true,
       required: true
     },
@@ -18,6 +18,9 @@ const resultSchema = new Schema(
     done: {
       type: Boolean,
       default: false
+    },
+    image: {
+      type: String
     }
   },
   {

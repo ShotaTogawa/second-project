@@ -37,6 +37,8 @@ export const GET_PUBLIC_TWEETS = gql`
       likes
       tweet
       tag
+      resultId
+      userId
     }
   }
 `;
@@ -87,5 +89,41 @@ export const DELETE_TWEET = gql`
 /* Comment's mutations */
 
 /* Result's query */
+export const GET_RESULT = gql`
+  query($tweetId: String!) {
+    getResult(tweetId: $tweetId) {
+      _id
+      tweetId
+      done
+      description
+      createdAt
+      image
+    }
+  }
+`;
 
 /* Result's mutations */
+export const ADD_RESULT = gql`
+  mutation(
+    $userId: String!
+    $tweetId: String!
+    $description: String!
+    $done: Boolean
+    $image: String
+  ) {
+    addResult(
+      userId: $userId
+      tweetId: $tweetId
+      description: $description
+      done: $done
+      image: $image
+    ) {
+      _id
+      tweetId
+      description
+      createdAt
+      done
+      image
+    }
+  }
+`;
