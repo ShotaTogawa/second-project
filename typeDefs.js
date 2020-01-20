@@ -24,6 +24,7 @@ module.exports = gql`
     commentId: String!
     resultId: String
     public: Boolean
+    image: String
     tag: String
     createdAt: String!
   }
