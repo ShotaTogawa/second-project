@@ -3,10 +3,12 @@ import classes from "./timeline.css";
 import { Feed, Button, Icon } from "semantic-ui-react";
 import { Query, Mutation } from "react-apollo";
 import Loading from "../Loading";
+import Comments from "../Comment/Comments";
 import {
   GET_PUBLIC_TWEETS,
   DELETE_TWEET,
-  GET_CURRENT_USER
+  GET_CURRENT_USER,
+  GET_COMMENTS
 } from "../../queries";
 import { withRouter, Link } from "react-router-dom";
 
@@ -23,6 +25,7 @@ class TimeLine extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <div className="HomeTitle" style={classes.HomeTitle}>
@@ -35,7 +38,6 @@ class TimeLine extends Component {
               {({ data, loading, error }) => {
                 if (loading) return <Loading />;
                 return data.getPublicTweets.map(tweet => {
-                  console.log(tweet);
                   return (
                     <Fragment key={tweet._id}>
                       <Feed.Event>
@@ -131,6 +133,22 @@ class TimeLine extends Component {
                           )}
                         </Feed.Meta>
                       </Feed.Event>
+                      <Query
+                        query={GET_COMMENTS}
+                        variables={{ tweetId: tweet._id }}
+                      >
+                        {({ data, loading, error }) => {
+                          if (loading) return <Loading />;
+                          return (
+                            <Comments
+                              userId={this.props.userId}
+                              tweetId={tweet._id}
+                              push={this.props.history.push}
+                              comments={data.getComments}
+                            />
+                          );
+                        }}
+                      </Query>
                     </Fragment>
                   );
                 });
