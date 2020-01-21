@@ -85,8 +85,24 @@ export const DELETE_TWEET = gql`
 `;
 
 /* Comment's query */
+export const GET_COMMENTS = gql`
+  query($tweetId: String!) {
+    getComments(tweetId: $tweetId) {
+      _id
+      comment
+      createdAt
+    }
+  }
+`;
 
 /* Comment's mutations */
+export const ADD_COMMENT = gql`
+  mutation($userId: String!, $tweetId: String!, $comment: String!) {
+    addComment(userId: $userId, tweetId: $tweetId, comment: $comment) {
+      _id
+    }
+  }
+`;
 
 /* Result's query */
 export const GET_RESULT = gql`
