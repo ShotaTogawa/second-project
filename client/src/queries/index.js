@@ -89,6 +89,7 @@ export const GET_COMMENTS = gql`
   query($tweetId: String!) {
     getComments(tweetId: $tweetId) {
       _id
+      userId
       comment
       createdAt
     }

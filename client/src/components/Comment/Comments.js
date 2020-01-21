@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Comment, Form, Header } from "semantic-ui-react";
+import { Button, Comment, Form, Header, List } from "semantic-ui-react";
 import { Mutation } from "react-apollo";
 import { ADD_COMMENT } from "../../queries";
 import Loading from "../Loading";
@@ -35,8 +35,14 @@ class Comments extends Component {
               <div>{comment.createdAt}</div>
             </Comment.Metadata>
             <Comment.Text>{comment.comment}</Comment.Text>
-            <Button circular size="mini" color="teal" icon="edit" />
-            <Button circular size="mini" color="red" icon="delete" />
+            {comment.userId === this.props.userId ? (
+              <List horizontal size="mini">
+                <List.Item as="a">Edit</List.Item>
+                <List.Item as="a">Delete</List.Item>
+              </List>
+            ) : (
+              ""
+            )}
           </Comment.Content>
         </Comment>
       );
@@ -55,7 +61,7 @@ class Comments extends Component {
       });
   };
   render() {
-    console.log(this.props.comments);
+    console.log(this.props);
     return (
       <Comment.Group size="mini">
         <Header dividing />
