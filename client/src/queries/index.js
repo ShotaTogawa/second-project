@@ -105,6 +105,14 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const DELETE_COMMENT = gql`
+  mutation($_id: ID!) {
+    deleteComment(_id: $_id) {
+      _id
+    }
+  }
+`;
+
 /* Result's query */
 export const GET_RESULT = gql`
   query($tweetId: String!) {

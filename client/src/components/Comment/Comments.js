@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Comment, Form, Header, List } from "semantic-ui-react";
 import { Mutation } from "react-apollo";
-import { ADD_COMMENT } from "../../queries";
+import { ADD_COMMENT, DELETE_COMMENT } from "../../queries";
 import Loading from "../Loading";
 
 class Comments extends Component {
@@ -12,6 +12,17 @@ class Comments extends Component {
 
   handleChange = event => {
     this.setState({ comment: event.target.value });
+  };
+
+  handleDelete = (event, deleteComment) => {
+    event.preventDefault();
+    deleteComment()
+      .then(async () => {
+        this.props.history.push("/");
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
 
   // updateCach = (cache, { data: { addComment } }) => {
@@ -37,8 +48,25 @@ class Comments extends Component {
             <Comment.Text>{comment.comment}</Comment.Text>
             {comment.userId === this.props.userId ? (
               <List horizontal size="mini">
-                <List.Item as="a">Edit</List.Item>
-                <List.Item as="a">Delete</List.Item>
+                {/* <List.Item as="a">Edit</List.Item> */}
+                <Mutation
+                  mutation={DELETE_COMMENT}
+                  variables={{ _id: comment._id }}
+                >
+                  {(deleteComment, { data, loading, error }) => {
+                    if (loading) return <Loading />;
+                    return (
+                      <List.Item
+                        as="a"
+                        onClick={event =>
+                          this.handleDelete(event, deleteComment)
+                        }
+                      >
+                        Delete
+                      </List.Item>
+                    );
+                  }}
+                </Mutation>
               </List>
             ) : (
               ""
