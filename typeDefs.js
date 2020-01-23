@@ -53,6 +53,7 @@ module.exports = gql`
     getTweet(_id: ID!): Tweet
     getTweets(userId: String!): [Tweet]
     getPublicTweets: [Tweet]
+    # getLikes(_id: ID!): Tweet
     getComments(tweetId: String!): [Comment]
     getResult(tweetId: String!): Result
     getResults(userId: String!): [Result]
@@ -70,6 +71,8 @@ module.exports = gql`
     ): Tweet
     deleteTweet(_id: ID!): Tweet
     editTweet(_id: ID!, tweet: String!, tag: String): Tweet
+    likeTweet(_id: ID!, userId: ID!): Tweet
+    unlikeTweet(_id: ID!, userId: ID!): Tweet
     addComment(userId: String!, tweetId: String!, comment: String!): Comment
     deleteComment(_id: ID!): Comment
     editComment(_id: ID!, comment: String!): Comment

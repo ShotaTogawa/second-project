@@ -4,6 +4,7 @@ import { Feed, Button, Icon } from "semantic-ui-react";
 import { Query, Mutation } from "react-apollo";
 import Loading from "../Loading";
 import Comments from "../Comment/Comments";
+import LikeTweet from "./LikeTweet";
 import {
   GET_PUBLIC_TWEETS,
   DELETE_TWEET,
@@ -25,7 +26,6 @@ class TimeLine extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <div className="HomeTitle" style={classes.HomeTitle}>
@@ -49,10 +49,10 @@ class TimeLine extends Component {
                             <div
                               dangerouslySetInnerHTML={{ __html: tweet.tweet }}
                             />
-                            <Feed.Like style={{ marginRight: "0.7rem" }}>
-                              <Icon name="like" />
-                              {tweet.likes}
-                            </Feed.Like>
+                            <LikeTweet
+                              _id={tweet._id}
+                              userId={this.props.userId}
+                            />
                             <Feed.Meta>
                               {tweet.tag ? (
                                 <div className="Tag" style={classes.Tag}>

@@ -19,6 +19,10 @@ module.exports = {
         return null;
       }
       const user = await User.findOne({ email: currentUser.email });
+      // .populate({
+      //   path: "favorites",
+      //   model: "Tweet"
+      // });
       return user;
     },
     // tweet
@@ -43,6 +47,10 @@ module.exports = {
 
       return tweets;
     },
+    // getLikes: async (parent, { _id }, ctx) => {
+    //   const likes = await Tweet.findOne({ _id, public: true }).select("likes");
+    //   return likes;
+    // },
     // comment
     getComments: async (parent, { tweetId }, ctx) => {
       const comments = await Comment.find({ tweetId }).sort({
@@ -140,6 +148,43 @@ module.exports = {
         return tweet;
       } catch (e) {
         console.error(e);
+      }
+    },
+    likeTweet: async (parent, { _id, userId }, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      try {
+        const tweet = await Tweet.findByIdAndUpdate(
+          { _id },
+          { $inc: { likes: 1 } }
+        );
+        const user = await User.findByIdAndUpdate(
+          { _id: userId },
+          { $addToSet: { favorites: _id } }
+        );
+        return tweet;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    unlikeTweet: async (parent, { _id, userId }, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      try {
+        const tweet = await Tweet.findByIdAndUpdate(
+          { _id },
+          { $inc: { likes: -1 } }
+        );
+
+        const user = await User.findByIdAndUpdate(
+          { _id: userId },
+          { $pull: { favorites: _id } }
+        );
+        return tweet;
+      } catch (e) {
+        console.log(e);
       }
     },
     // comment

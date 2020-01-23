@@ -89,7 +89,6 @@ class Comments extends Component {
       });
   };
   render() {
-    console.log(this.props);
     return (
       <Comment.Group size="mini">
         <Header dividing />
