@@ -8,6 +8,9 @@ export const GET_CURRENT_USER = gql`
       _id
       name
       email
+      favorites {
+        _id
+      }
     }
   }
 `;
@@ -54,6 +57,14 @@ export const GET_TWEET = gql`
   }
 `;
 
+// export const GET_LIKES = gql`
+//   query($_id: ID!) {
+//     getLikes(_id: $_id) {
+//       likes
+//     }
+//   }
+// `;
+
 /* Tweet's mutations */
 export const POST_TWEET = gql`
   mutation($userId: String!, $tweet: String!, $tag: String, $public: Boolean) {
@@ -89,6 +100,7 @@ export const GET_COMMENTS = gql`
   query($tweetId: String!) {
     getComments(tweetId: $tweetId) {
       _id
+      userId
       comment
       createdAt
     }
@@ -100,6 +112,32 @@ export const ADD_COMMENT = gql`
   mutation($userId: String!, $tweetId: String!, $comment: String!) {
     addComment(userId: $userId, tweetId: $tweetId, comment: $comment) {
       _id
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation($_id: ID!) {
+    deleteComment(_id: $_id) {
+      _id
+    }
+  }
+`;
+
+export const LIKE_TWEET = gql`
+  mutation($_id: ID!, $userId: ID!) {
+    likeTweet(_id: $_id, userId: $userId) {
+      _id
+      likes
+    }
+  }
+`;
+
+export const UNLIKE_TWEET = gql`
+  mutation($_id: ID!, $userId: ID!) {
+    unlikeTweet(_id: $_id, userId: $userId) {
+      _id
+      likes
     }
   }
 `;

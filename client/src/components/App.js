@@ -7,7 +7,6 @@ import { withRouter } from "react-router-dom";
 
 class App extends Component {
   render() {
-    console.log(this.props.session);
     return (
       <>
         {this.props.session && this.props.session.getCurrentUser ? (

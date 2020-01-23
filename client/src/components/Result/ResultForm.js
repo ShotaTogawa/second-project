@@ -37,7 +37,6 @@ class ResultForm extends Component {
     event.preventDefault();
     addResult()
       .then(({ data }) => {
-        console.log(data.addResult);
         this.props.history.push(`/result/${data.addResult.tweetId}`);
       })
       .catch(e => {

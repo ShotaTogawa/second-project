@@ -39,4 +39,4 @@ const tweetSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("Tweeet", tweetSchema);
+module.exports = mongoose.model("Tweet", tweetSchema);
