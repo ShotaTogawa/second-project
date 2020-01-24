@@ -57,6 +57,19 @@ export const GET_TWEET = gql`
   }
 `;
 
+export const GET_TWEETS = gql`
+  query($userId: String!) {
+    getTweets(userId: $userId) {
+      _id
+      likes
+      title
+      image
+      tag
+      createdAt
+    }
+  }
+`;
+
 // export const GET_LIKES = gql`
 //   query($_id: ID!) {
 //     getLikes(_id: $_id) {
@@ -67,8 +80,20 @@ export const GET_TWEET = gql`
 
 /* Tweet's mutations */
 export const POST_TWEET = gql`
-  mutation($userId: String!, $tweet: String!, $tag: String, $public: Boolean) {
-    postTweet(userId: $userId, tweet: $tweet, tag: $tag, public: $public) {
+  mutation(
+    $userId: String!
+    $tweet: String!
+    $tag: String
+    $title: String
+    $public: Boolean
+  ) {
+    postTweet(
+      userId: $userId
+      tweet: $tweet
+      tag: $tag
+      title: $title
+      public: $public
+    ) {
       userId
       tweet
       tag

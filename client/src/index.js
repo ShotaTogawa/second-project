@@ -20,6 +20,7 @@ import TweetForm from "./components/Post/TweetForm";
 import TweetUpdateForm from "./components/Post/TweetUpdateForm";
 import Result from "./components/Result/Result";
 import ResultForm from "./components/Result/ResultForm";
+import MyPage from "./components/MyPage/MyPage";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -58,6 +59,7 @@ const Root = ({ refetch, session }) => (
         exact
         render={() => <TweetForm session={session} />}
       />
+      <Route path="/user" exact render={() => <MyPage session={session} />} />
       <Route
         path="/post/edit/:id"
         exact
