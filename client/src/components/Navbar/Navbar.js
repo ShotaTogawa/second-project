@@ -13,7 +13,12 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
-          {this.props.session.getCurrentUser.name}
+          <Link
+            to={`/user/${this.props.session.getCurrentUser._id}`}
+            style={{ color: "#fff" }}
+          >
+            {this.props.session.getCurrentUser.name}
+          </Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
           <Link to="/post" style={{ color: "#fff" }}>
@@ -21,7 +26,7 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
-          Trail
+          Favorites
         </li>
         <ApolloConsumer>
           {client => {

@@ -1,0 +1,7 @@
+.MyPageContainer {
+  width: 70%;
+  height: auto;
+  background-color: indianred;
+  margin: 0 auto;
+  display: flex;
+}
