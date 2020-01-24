@@ -13,10 +13,7 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
-          <Link
-            to={`/user/${this.props.session.getCurrentUser._id}`}
-            style={{ color: "#fff" }}
-          >
+          <Link to="/user" style={{ color: "#fff" }}>
             {this.props.session.getCurrentUser.name}
           </Link>
         </li>

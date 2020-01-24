@@ -20,6 +20,7 @@ module.exports = gql`
     _id: ID
     userId: String!
     likes: Int
+    title: String
     tweet: String!
     commentId: String!
     resultId: String
@@ -67,6 +68,7 @@ module.exports = gql`
       userId: String!
       tweet: String!
       tag: String
+      title: String
       public: Boolean
     ): Tweet
     deleteTweet(_id: ID!): Tweet

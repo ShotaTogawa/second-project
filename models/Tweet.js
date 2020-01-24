@@ -11,6 +11,9 @@ const tweetSchema = new Schema(
       type: Number,
       default: 0
     },
+    title: {
+      type: String
+    },
     tweet: {
       type: String,
       required: true

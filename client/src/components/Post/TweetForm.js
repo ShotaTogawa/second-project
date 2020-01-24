@@ -12,7 +12,8 @@ class TweetForm extends Component {
   state = {
     tweet: "",
     isPublic: false,
-    tag: ""
+    tag: "",
+    title: ""
   };
   handleTweetChange = event => {
     const newContent = event.editor.getData();
@@ -44,14 +45,14 @@ class TweetForm extends Component {
       });
   };
   render() {
-    const { tweet, tag, isPublic } = this.state;
+    const { title, tweet, tag, isPublic } = this.state;
     const { _id } = this.props.session.getCurrentUser;
     return (
       <div className="TweetPostForm" style={classes.TweetPostForm}>
         <h2>Tweet</h2>
         <Mutation
           mutation={POST_TWEET}
-          variables={{ userId: _id, tweet, tag, public: isPublic }}
+          variables={{ userId: _id, title, tweet, tag, public: isPublic }}
           refetchQueries={() => [{ query: GET_PUBLIC_TWEETS }]}
           update={this.updateCach}
         >
@@ -60,6 +61,15 @@ class TweetForm extends Component {
             return (
               <>
                 <Form onSubmit={event => this.handleSubmit(event, postTweet)}>
+                  <Form.Field width="10">
+                    <label>Title</label>
+                    <input
+                      placeholder="Title (Date is entered by default)"
+                      onChange={this.handleChange}
+                      name="title"
+                      value={this.state.title}
+                    />
+                  </Form.Field>
                   <CKEditor
                     name="tweet"
                     content={this.state.tweet}

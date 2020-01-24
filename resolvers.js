@@ -11,6 +11,15 @@ const createToken = (user, secret, expiresIn) => {
   });
 };
 
+const getNowYMD = () => {
+  var dt = new Date();
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth() + 1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = m + "-" + d + "-" + y;
+  return result;
+};
+
 module.exports = {
   Query: {
     // user
@@ -112,12 +121,25 @@ module.exports = {
         throw new Error("Please sign in");
       }
       try {
-        const tweet = await new Tweet({
-          userId: args.userId,
-          tweet: args.tweet,
-          tag: args.tag,
-          public: args.public
-        }).save();
+        let tweet;
+        console.log(args.title);
+        if (!args.title) {
+          tweet = await new Tweet({
+            userId: args.userId,
+            title: getNowYMD(),
+            tweet: args.tweet,
+            tag: args.tag,
+            public: args.public
+          }).save();
+        } else {
+          tweet = await new Tweet({
+            userId: args.userId,
+            title: args.title,
+            tweet: args.tweet,
+            tag: args.tag,
+            public: args.public
+          }).save();
+        }
 
         return tweet;
       } catch (e) {

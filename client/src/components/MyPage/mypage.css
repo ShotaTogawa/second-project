@@ -1,7 +1,54 @@
 .MyPageContainer {
-  width: 70%;
+  width: 60%;
   height: auto;
-  background-color: indianred;
-  margin: 0 auto;
+  background-color: rgb(176, 224, 230, 0.4);
+  margin: 2rem auto 4rem auto;
   display: flex;
+}
+
+.ProfileContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  height: 18rem;
+  padding: 1.5rem;
+}
+
+.ProfileImage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 15rem;
+}
+
+.ProfileInfo {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(104, 216, 216);
+  border: 2px solid #fff;
+  color: #fff;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.OwnTrailContainer {
+  width: 60%;
+  height: auto;
+  background-color: rgb(176, 224, 230, 0.4);
+  margin: 2rem auto 4rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.SortSection {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}
+
+.PagenationButton {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }

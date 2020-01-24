@@ -59,11 +59,7 @@ const Root = ({ refetch, session }) => (
         exact
         render={() => <TweetForm session={session} />}
       />
-      <Route
-        path="/user/:id"
-        exact
-        render={() => <MyPage session={session} />}
-      />
+      <Route path="/user" exact render={() => <MyPage session={session} />} />
       <Route
         path="/post/edit/:id"
         exact
