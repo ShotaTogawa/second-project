@@ -38,6 +38,7 @@ class TimeLine extends Component {
               {({ data, loading, error }) => {
                 if (loading) return <Loading />;
                 return data.getPublicTweets.map(tweet => {
+                  console.log(tweet);
                   return (
                     <Fragment key={tweet._id}>
                       <Feed.Event>

@@ -50,9 +50,14 @@ module.exports = {
       return tweets;
     },
     getPublicTweets: async (parent, args, ctx) => {
-      const tweets = await Tweet.find({ public: true }).sort({
-        createdAt: "desc"
-      });
+      const tweets = await Tweet.find({ public: true })
+        .populate({
+          path: "user",
+          model: "User"
+        })
+        .sort({
+          createdAt: "desc"
+        });
 
       return tweets;
     },
@@ -129,7 +134,8 @@ module.exports = {
             title: getNowYMD(),
             tweet: args.tweet,
             tag: args.tag,
-            public: args.public
+            public: args.public,
+            user: args.userId
           }).save();
         } else {
           tweet = await new Tweet({
@@ -137,7 +143,8 @@ module.exports = {
             title: args.title,
             tweet: args.tweet,
             tag: args.tag,
-            public: args.public
+            public: args.public,
+            user: args.userId
           }).save();
         }
 

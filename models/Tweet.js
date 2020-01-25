@@ -35,6 +35,10 @@ const tweetSchema = new Schema(
     },
     tag: {
       type: String
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
     }
   },
   {

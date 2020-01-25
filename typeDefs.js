@@ -28,6 +28,7 @@ module.exports = gql`
     image: String
     tag: String
     createdAt: String!
+    user: User
   }
 
   type Comment {

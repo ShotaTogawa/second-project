@@ -6,7 +6,7 @@ import { Query } from "react-apollo";
 import { GET_TWEETS } from "../../queries";
 import Loading from "../Loading";
 
-class MyPage extends Component {
+class UserPage extends Component {
   render() {
     console.log(this.props);
     return (
@@ -46,7 +46,7 @@ class MyPage extends Component {
             <Table.Body>
               <Query
                 query={GET_TWEETS}
-                variables={{ userId: this.props.session.getCurrentUser._id }}
+                variables={{ userId: this.props.userId }}
               >
                 {({ data, loading, error }) => {
                   if (loading) return <Loading />;
@@ -76,4 +76,4 @@ class MyPage extends Component {
   }
 }
 
-export default withRouter(MyPage);
+export default withRouter(UserPage);

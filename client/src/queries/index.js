@@ -41,7 +41,10 @@ export const GET_PUBLIC_TWEETS = gql`
       tweet
       tag
       resultId
-      userId
+      user {
+        name
+        avatar
+      }
     }
   }
 `;

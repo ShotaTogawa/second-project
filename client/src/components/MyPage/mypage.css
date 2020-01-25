@@ -1,7 +1,7 @@
 .MyPageContainer {
   width: 60%;
   height: auto;
-  background-color: rgb(176, 224, 230, 0.4);
+  background-color: rgb(176, 224, 230, 0.1);
   margin: 2rem auto 4rem auto;
   display: flex;
 }
@@ -28,8 +28,8 @@
   background-color: rgb(104, 216, 216);
   border: 2px solid #fff;
   color: #fff;
-  width: 100%;
-  margin-top: 1rem;
+  width: 60%;
+  margin: 1rem auto;
 }
 
 .OwnTrailContainer {
