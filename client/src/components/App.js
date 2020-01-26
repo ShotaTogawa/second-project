@@ -12,7 +12,9 @@ class App extends Component {
         {this.props.session && this.props.session.getCurrentUser ? (
           <div className="AppContainer" stype={classes.AppContainer}>
             <div className="SideContainer" style={classes.SideContainer}>
-              <FriendsSearch />
+              <FriendsSearch
+                friends={this.props.session.getCurrentUser.friends}
+              />
             </div>
             <div
               className="TimeLineContainer"
