@@ -49,9 +49,13 @@ class TimeLine extends Component {
                         </Feed.Label>
                         <Feed.Content>
                           <Feed.Summary>
-                            <Link to={`/user/${tweet.userId}`}>
-                              {tweet.user.name}{" "}
-                            </Link>{" "}
+                            {tweet.userId !== this.props.userId ? (
+                              <Link to={`/user/${tweet.userId}`}>
+                                {tweet.user.name}{" "}
+                              </Link>
+                            ) : (
+                              <Link to={`/user`}>{tweet.user.name} </Link>
+                            )}
                             added "{tweet.title}"
                           </Feed.Summary>
                           <Feed.Extra text>

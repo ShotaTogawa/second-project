@@ -1,51 +1,49 @@
 import React, { Component } from "react";
-import classes from "./mypage.css";
+import classes from "./userpage.css";
 import { Image, Table, Button } from "semantic-ui-react";
 import { withRouter, Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import { GET_TWEETS, GET_USER } from "../../queries";
 import Loading from "../Loading";
+import FollowFriends from "./FollowFrined";
 
 class UserPage extends Component {
   render() {
-    console.log(this.props);
+    console.log(this.props.match.params.userId);
     return (
       <>
-        <div className="MyPageContainer">
-          <div className="ProfileContainer">
-            <Query
-              query={GET_USER}
-              variables={{ _id: this.props.match.params.userId }}
-            >
-              {({ data, loading, error }) => {
-                if (loading) return <Loading />;
-                return (
-                  <>
-                    <div className="ProfileImage">
-                      <Image
-                        // {data.getUser.avatar}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNvNK0vdBneJz5FHoIggrA7UruNCVKsTfUxixvlA6KOMn3xd0J"
-                        size="medium"
-                      />
-                      {data.getUser._id ===
-                      this.props.session.getCurrentUser._id
-                        ? ""
-                        : "Follow"}
-                    </div>
-                    <div className="ProfileInfo" style={classes.ProfileInfo}>
-                      <h2>{data.getUser.name}</h2>
-                    </div>
-                  </>
-                );
-              }}
-            </Query>
-          </div>
+        <div className="UserPageContainer">
+          <Query
+            query={GET_USER}
+            variables={{ _id: this.props.match.params.userId }}
+          >
+            {({ data, loading, error }) => {
+              if (loading) return <Loading />;
+              console.log(error);
+              return (
+                <div className="UserProfileContainer">
+                  <div className="UserProfileImage">
+                    <Image
+                      // {data.getUser.avatar}
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNvNK0vdBneJz5FHoIggrA7UruNCVKsTfUxixvlA6KOMn3xd0J"
+                      size="medium"
+                    />
+                  </div>
+                  <div
+                    className="FollowButtonContainer"
+                    style={classes.FollowButtonContainer}
+                  >
+                    <FollowFriends friendId={this.props.match.params.userId} />
+                  </div>
+                  <div className="UserProfileInfo" style={classes.ProfileInfo}>
+                    <h2>{data.getUser.name}</h2>
+                  </div>
+                </div>
+              );
+            }}
+          </Query>
         </div>
-        <div className="OwnTrailContainer">
-          {/* <div className="SortSection" style={classes.SortSection}>
-            tag and hiduke
-            <p>koko</p>
-          </div> */}
+        <div className="UserTrailContainer">
           <Table color="teal">
             <Table.Header>
               <Table.Row>

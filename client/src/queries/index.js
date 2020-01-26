@@ -13,10 +13,11 @@ export const GET_CURRENT_USER = gql`
         title
         image
         tag
-        # user {
-        #   _id
-        #   name
-        # }
+      }
+      friends {
+        _id
+        name
+        avatar
       }
     }
   }
@@ -30,8 +31,6 @@ export const GET_USER = gql`
       avatar
       friends {
         _id
-        name
-        avatar
       }
     }
   }
@@ -50,6 +49,22 @@ export const SIGNIN_USER = gql`
   mutation($email: String!, $password: String!) {
     signinUser(email: $email, password: $password) {
       token
+    }
+  }
+`;
+
+export const FOLLOW_USER = gql`
+  mutation($_id: ID!, $friendId: ID!) {
+    followFriend(_id: $_id, friendId: $friendId) {
+      _id
+    }
+  }
+`;
+
+export const UNFOLLOW_USER = gql`
+  mutation($_id: ID!, $friendId: ID!) {
+    unfollowFriend(_id: $_id, friendId: $friendId) {
+      _id
     }
   }
 `;
