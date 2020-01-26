@@ -27,10 +27,12 @@ module.exports = {
       if (!currentUser) {
         return null;
       }
-      const user = await User.findOne({ email: currentUser.email }).populate({
-        path: "favorites",
-        model: "Tweet"
-      });
+      const user = await User.findOne({ email: currentUser.email })
+        .populate({
+          path: "favorites",
+          model: "Tweet"
+        })
+        .populate({ path: "friends", model: "User" });
       return user;
     },
     getUser: async (parent, args, ctx) => {
@@ -125,6 +127,34 @@ module.exports = {
         await Tweet.deleteMany({ userId: _id });
         await Comment.deleteMany({ userId: _id });
         await Result.deleteMany({ userId: _id });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    followFriend: async (parent, { _id, friendId }, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      try {
+        const user = await User.findByIdAndUpdate(
+          { _id },
+          { $addToSet: { friends: friendId } }
+        );
+        return user;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    unfollowFriend: async (parent, { _id, friendId }, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Please sign in");
+      }
+      try {
+        const user = await User.findByIdAndUpdate(
+          { _id },
+          { $pull: { friends: friendId } }
+        );
+        return user;
       } catch (e) {
         console.log(e);
       }

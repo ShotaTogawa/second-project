@@ -77,6 +77,8 @@ module.exports = gql`
     editTweet(_id: ID!, tweet: String!, tag: String): Tweet
     likeTweet(_id: ID!, userId: ID!): Tweet
     unlikeTweet(_id: ID!, userId: ID!): Tweet
+    followFriend(_id: ID!, friendId: ID!): User
+    unfollowFriend(_id: ID!, friendId: ID!): User
     addComment(userId: String!, tweetId: String!, comment: String!): Comment
     deleteComment(_id: ID!): Comment
     editComment(_id: ID!, comment: String!): Comment
