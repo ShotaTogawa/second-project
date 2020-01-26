@@ -3,7 +3,7 @@ import classes from "./mypage.css";
 import { Image, Table, Button } from "semantic-ui-react";
 import { withRouter, Link } from "react-router-dom";
 import { Query } from "react-apollo";
-import { GET_TWEETS } from "../../queries";
+import { GET_TWEETS, GET_USER } from "../../queries";
 import Loading from "../Loading";
 
 class UserPage extends Component {
@@ -13,26 +13,39 @@ class UserPage extends Component {
       <>
         <div className="MyPageContainer">
           <div className="ProfileContainer">
-            <div className="ProfileImage">
-              <Image
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNvNK0vdBneJz5FHoIggrA7UruNCVKsTfUxixvlA6KOMn3xd0J"
-                size="medium"
-              />
-            </div>
-            <div className="ProfileInfo" style={classes.ProfileInfo}>
-              <h2>{this.props.session.getCurrentUser.name}</h2>
-            </div>
+            <Query
+              query={GET_USER}
+              variables={{ _id: this.props.match.params.userId }}
+            >
+              {({ data, loading, error }) => {
+                if (loading) return <Loading />;
+                return (
+                  <>
+                    <div className="ProfileImage">
+                      <Image
+                        // {data.getUser.avatar}
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNvNK0vdBneJz5FHoIggrA7UruNCVKsTfUxixvlA6KOMn3xd0J"
+                        size="medium"
+                      />
+                      {data.getUser._id ===
+                      this.props.session.getCurrentUser._id
+                        ? ""
+                        : "Follow"}
+                    </div>
+                    <div className="ProfileInfo" style={classes.ProfileInfo}>
+                      <h2>{data.getUser.name}</h2>
+                    </div>
+                  </>
+                );
+              }}
+            </Query>
           </div>
         </div>
-        {/* <div style={{ margin: "1.5rem 0" }}></div> */}
         <div className="OwnTrailContainer">
-          <div style={{ textAlign: "center", marginTop: "1rem" }}>
-            <h2>Your Trail</h2>
-          </div>
-          <div className="SortSection" style={classes.SortSection}>
+          {/* <div className="SortSection" style={classes.SortSection}>
             tag and hiduke
             <p>koko</p>
-          </div>
+          </div> */}
           <Table color="teal">
             <Table.Header>
               <Table.Row>
@@ -46,7 +59,7 @@ class UserPage extends Component {
             <Table.Body>
               <Query
                 query={GET_TWEETS}
-                variables={{ userId: this.props.userId }}
+                variables={{ userId: this.props.match.params.userId }}
               >
                 {({ data, loading, error }) => {
                   if (loading) return <Loading />;

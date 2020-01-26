@@ -10,6 +10,28 @@ export const GET_CURRENT_USER = gql`
       email
       favorites {
         _id
+        title
+        image
+        tag
+        # user {
+        #   _id
+        #   name
+        # }
+      }
+    }
+  }
+`;
+
+export const GET_USER = gql`
+  query($_id: ID!) {
+    getUser(_id: $_id) {
+      _id
+      name
+      avatar
+      friends {
+        _id
+        name
+        avatar
       }
     }
   }
@@ -38,9 +60,11 @@ export const GET_PUBLIC_TWEETS = gql`
     getPublicTweets {
       _id
       likes
+      title
       tweet
       tag
       resultId
+      userId
       user {
         name
         avatar

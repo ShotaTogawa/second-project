@@ -27,12 +27,22 @@ module.exports = {
       if (!currentUser) {
         return null;
       }
-      const user = await User.findOne({ email: currentUser.email });
-      // .populate({
-      //   path: "favorites",
-      //   model: "Tweet"
-      // });
+      const user = await User.findOne({ email: currentUser.email }).populate({
+        path: "favorites",
+        model: "Tweet"
+      });
       return user;
+    },
+    getUser: async (parent, args, ctx) => {
+      const user = await User.findById({ _id: args._id });
+      try {
+        if (!user) {
+          throw new Error("No user found");
+        }
+        return user;
+      } catch (e) {
+        console.log(e);
+      }
     },
     // tweet
     getTweet: async (parent, { _id }, ctx) => {

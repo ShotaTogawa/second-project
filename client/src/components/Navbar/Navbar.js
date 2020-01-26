@@ -23,7 +23,9 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="NavbarItem" style={classes.NavbarItem}>
-          Favorites
+          <Link to="/user/favorites" style={{ color: "#fff" }}>
+            Favorites
+          </Link>
         </li>
         <ApolloConsumer>
           {client => {

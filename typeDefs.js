@@ -52,6 +52,7 @@ module.exports = gql`
   type Query {
     hello: String
     getCurrentUser: User
+    getUser(_id: ID!): User
     getTweet(_id: ID!): Tweet
     getTweets(userId: String!): [Tweet]
     getPublicTweets: [Tweet]
