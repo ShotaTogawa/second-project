@@ -4,7 +4,6 @@ const cors = require("cors");
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
 const jwt = require("jsonwebtoken");
-const User = require("./models/User");
 
 require("dotenv").config({ path: "variables.env" });
 require("./db/mongoose");

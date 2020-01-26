@@ -14,6 +14,9 @@ import {
 import { withRouter, Link } from "react-router-dom";
 
 class TimeLine extends Component {
+  state = {
+    isOpen: false
+  };
   handleDelete = (event, deleteTweet) => {
     event.preventDefault();
     deleteTweet()
@@ -46,24 +49,71 @@ class TimeLine extends Component {
                         </Feed.Label>
                         <Feed.Content>
                           <Feed.Summary>
-                            <div
-                              dangerouslySetInnerHTML={{ __html: tweet.tweet }}
-                            />
+                            <Link to={`/user/${tweet.userId}`}>
+                              {tweet.user.name}{" "}
+                            </Link>{" "}
+                            added "{tweet.title}"
+                          </Feed.Summary>
+                          <Feed.Extra text>
+                            {!this.state.isOpen ? (
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: tweet.tweet.slice(0, 200)
+                                }}
+                              />
+                            ) : (
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: tweet.tweet
+                                }}
+                              />
+                            )}
+                            {tweet.tweet.length > 200 && !this.state.isOpen ? (
+                              <span
+                                style={{
+                                  color: "#4183C4",
+                                  borderBottom: "1px solid #4183C4",
+                                  cursor: "pointer",
+                                  paddingTop: "1rem"
+                                }}
+                                onClick={() => this.setState({ isOpen: true })}
+                              >
+                                ... read more
+                              </span>
+                            ) : tweet.tweet.length > 200 &&
+                              this.state.isOpen ? (
+                              <span
+                                style={{
+                                  color: "#4183C4",
+                                  cursor: "pointer",
+                                  paddingTop: "1rem"
+                                }}
+                                onClick={() => this.setState({ isOpen: false })}
+                              >
+                                X
+                              </span>
+                            ) : (
+                              ""
+                            )}
+                          </Feed.Extra>
+                          {this.props.userId === tweet.userId ? (
+                            ""
+                          ) : (
                             <LikeTweet
                               _id={tweet._id}
                               userId={this.props.userId}
                             />
-                            <Feed.Meta>
-                              {tweet.tag ? (
-                                <div className="Tag" style={classes.Tag}>
-                                  {tweet.tag}
-                                </div>
-                              ) : (
-                                ""
-                              )}
-                            </Feed.Meta>
-                            <Feed.Date>1 Hour Ago</Feed.Date>
-                          </Feed.Summary>
+                          )}
+                          <Feed.Meta>
+                            {tweet.tag ? (
+                              <div className="Tag" style={classes.Tag}>
+                                {tweet.tag}
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </Feed.Meta>
+                          <Feed.Date>1 Hour Ago</Feed.Date>
                         </Feed.Content>
                         <Feed.Meta>
                           {this.props.userId === tweet.userId ? (

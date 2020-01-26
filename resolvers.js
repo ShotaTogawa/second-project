@@ -27,12 +27,22 @@ module.exports = {
       if (!currentUser) {
         return null;
       }
-      const user = await User.findOne({ email: currentUser.email });
-      // .populate({
-      //   path: "favorites",
-      //   model: "Tweet"
-      // });
+      const user = await User.findOne({ email: currentUser.email }).populate({
+        path: "favorites",
+        model: "Tweet"
+      });
       return user;
+    },
+    getUser: async (parent, args, ctx) => {
+      const user = await User.findById({ _id: args._id });
+      try {
+        if (!user) {
+          throw new Error("No user found");
+        }
+        return user;
+      } catch (e) {
+        console.log(e);
+      }
     },
     // tweet
     getTweet: async (parent, { _id }, ctx) => {
@@ -50,9 +60,14 @@ module.exports = {
       return tweets;
     },
     getPublicTweets: async (parent, args, ctx) => {
-      const tweets = await Tweet.find({ public: true }).sort({
-        createdAt: "desc"
-      });
+      const tweets = await Tweet.find({ public: true })
+        .populate({
+          path: "user",
+          model: "User"
+        })
+        .sort({
+          createdAt: "desc"
+        });
 
       return tweets;
     },
@@ -129,7 +144,8 @@ module.exports = {
             title: getNowYMD(),
             tweet: args.tweet,
             tag: args.tag,
-            public: args.public
+            public: args.public,
+            user: args.userId
           }).save();
         } else {
           tweet = await new Tweet({
@@ -137,7 +153,8 @@ module.exports = {
             title: args.title,
             tweet: args.tweet,
             tag: args.tag,
-            public: args.public
+            public: args.public,
+            user: args.userId
           }).save();
         }
 
