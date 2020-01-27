@@ -98,6 +98,7 @@ export const GET_TWEET = gql`
       title
       tag
       public
+      userId
       likes
       resultId
     }
@@ -108,6 +109,7 @@ export const GET_TWEETS = gql`
   query($userId: String!) {
     getTweets(userId: $userId) {
       _id
+      userId
       likes
       title
       image

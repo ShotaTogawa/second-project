@@ -18,7 +18,6 @@ import Signup from "./components/Auth/Signup";
 import Signin from "./components/Auth/Signin";
 import TweetForm from "./components/Post/TweetForm";
 import TweetUpdateForm from "./components/Post/TweetUpdateForm";
-import Result from "./components/Result/Result";
 import ResultForm from "./components/Result/ResultForm";
 import MyPage from "./components/MyPage/MyPage";
 import UserPage from "./components/MyPage/UserPage";
@@ -78,11 +77,7 @@ const Root = ({ refetch, session }) => (
         exact
         render={() => <TweetUpdateForm session={session} />}
       />
-      <Route
-        path="/result/:tweetId"
-        exact
-        render={() => <Result session={session} />}
-      />
+
       <Route
         path="/result/update/:tweetId"
         exact

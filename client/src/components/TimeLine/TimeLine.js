@@ -160,7 +160,7 @@ class TimeLine extends Component {
                             ""
                           )}
                           {tweet.resultId ? (
-                            <Link to={`/result/${tweet._id}`}>
+                            <Link to={`/${tweet._id}`}>
                               <Button
                                 color="olive"
                                 floated="right"

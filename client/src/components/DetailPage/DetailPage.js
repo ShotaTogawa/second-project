@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "../Loading";
 import { GET_TWEET, GET_RESULT } from "../../queries";
 import classes from "../Result/result.css";
 import { Image, Feed, Icon, Button } from "semantic-ui-react";
 import Error from "../Error";
+import WithSession from "../WithSession";
+import { get } from "mongoose";
 
 class DetailPage extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <Query
@@ -17,6 +20,7 @@ class DetailPage extends Component {
         >
           {({ data, loading, error }) => {
             if (loading) return <Loading />;
+            console.log(data);
             return (
               <div>
                 <div
@@ -95,7 +99,9 @@ class DetailPage extends Component {
                       );
                     }}
                   </Query>
-                ) : (
+                ) : !data.getTweet.resultId &&
+                  data.getTweet.userId ===
+                    this.props.session.getCurrentUser._id ? (
                   <div
                     className="ResultContainer"
                     style={classes.ResultContainer}
@@ -108,6 +114,8 @@ class DetailPage extends Component {
                       </Link>
                     </div>
                   </div>
+                ) : (
+                  ""
                 )}
               </div>
             );
@@ -118,4 +126,4 @@ class DetailPage extends Component {
   }
 }
 
-export default withRouter(DetailPage);
+export default WithSession(DetailPage);
