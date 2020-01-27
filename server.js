@@ -14,7 +14,7 @@ const app = express();
 const path = "/graphql";
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: process.env.END_POINT,
   credential: true
 };
 
