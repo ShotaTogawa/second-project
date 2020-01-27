@@ -25,7 +25,7 @@ import FavList from "./components/Favotites/FavList";
 import DetailPage from "./components/DetailPage/DetailPage";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: process.env.CLIENT_URI || "http://localhost:4000/graphql",
   fetchOptions: {
     credentials: "include"
   },
