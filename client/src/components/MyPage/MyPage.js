@@ -8,7 +8,6 @@ import Loading from "../Loading";
 
 class MyPage extends Component {
   render() {
-    console.log(this.props);
     return (
       <>
         <div className="MyPageContainer">
@@ -54,7 +53,7 @@ class MyPage extends Component {
                     <Table.Row key={tweet._id}>
                       <Table.Cell>{tweet.image}</Table.Cell>
                       <Table.Cell>
-                        <Link to="#">{tweet.title}</Link>
+                        <Link to={`/${tweet._id}`}>{tweet.title}</Link>
                       </Table.Cell>
                       <Table.Cell>{tweet.tag}</Table.Cell>
                       <Table.Cell>{tweet.likes}</Table.Cell>

@@ -1,40 +1,26 @@
 import React, { Component } from "react";
-import { List } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
+import { Card, Image, Button } from "semantic-ui-react";
 import classes from "./fab.css";
+import WithSession from "../WithSession";
+import FabCard from "./FabCard";
 
 class FabList extends Component {
+  renderCards = () => {
+    const { _id, favorites } = this.props.session.getCurrentUser;
+    return favorites.map(fab => {
+      return <FabCard userId={_id} fab={fab} />;
+    });
+  };
   render() {
-    console.log(this.props);
     return (
       <div className="FabContainer" style={classes.FabContainer}>
-        <h2>Favorites List</h2>
-        <List divided relaxed>
-          <List.Item>
-            <List.Icon name="github" size="large" verticalAlign="middle" />
-            <List.Content>
-              <List.Header as="a">Semantic-Org/Semantic-UI</List.Header>
-              <List.Description as="a">Updated 10 mins ago</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon name="github" size="large" verticalAlign="middle" />
-            <List.Content>
-              <List.Header as="a">Semantic-Org/Semantic-UI-Docs</List.Header>
-              <List.Description as="a">Updated 22 mins ago</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Icon name="github" size="large" verticalAlign="middle" />
-            <List.Content>
-              <List.Header as="a">Semantic-Org/Semantic-UI-Meteor</List.Header>
-              <List.Description as="a">Updated 34 mins ago</List.Description>
-            </List.Content>
-          </List.Item>
-        </List>
+        <h2 style={{ textAlign: "center" }}>Favorites List</h2>
+        <div className="CardContainer">
+          <Card.Group>{this.renderCards()}</Card.Group>
+        </div>
       </div>
     );
   }
 }
 
-export default withRouter(FabList);
+export default WithSession(FabList);

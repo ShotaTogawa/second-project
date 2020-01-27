@@ -20,8 +20,6 @@ class FriendSearch extends Component {
   };
 
   render() {
-    console.log(this.props);
-
     return (
       <>
         <div className="FriendsList" style={classes.FriendsList}>

@@ -23,6 +23,7 @@ import ResultForm from "./components/Result/ResultForm";
 import MyPage from "./components/MyPage/MyPage";
 import UserPage from "./components/MyPage/UserPage";
 import FabList from "./components/Favotites/FabList";
+import DetailPage from "./components/DetailPage/DetailPage";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -87,6 +88,7 @@ const Root = ({ refetch, session }) => (
         exact
         render={() => <ResultForm session={session} />}
       />
+      <Route path="/:tweetId" component={DetailPage} />
       <Redirect to="/" />
     </Switch>
   </Router>

@@ -41,7 +41,6 @@ class FollowFrined extends Component {
   render() {
     const { friendId } = this.props;
     const { _id } = this.props.session.getCurrentUser;
-    console.log(this.state);
     return (
       <Mutation mutation={UNFOLLOW_USER} variables={{ _id, friendId }}>
         {unfollowFriend => (
