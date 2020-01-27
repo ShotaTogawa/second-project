@@ -12,7 +12,9 @@ export const GET_CURRENT_USER = gql`
         _id
         title
         image
+        likes
         tag
+        createdAt
       }
       friends {
         _id
@@ -93,8 +95,11 @@ export const GET_TWEET = gql`
     getTweet(_id: $_id) {
       _id
       tweet
+      title
       tag
       public
+      likes
+      resultId
     }
   }
 `;

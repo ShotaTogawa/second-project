@@ -15,7 +15,9 @@
   font-size: 0.8rem;
   height: 1.5rem;
   color: #fff;
-  background-color: #c2f7f0;
+  font-weight: bold;
+  background-color: #6bf3e1;
   border-radius: 1rem;
   padding: 0 0.3rem;
+  margin-bottom: 1rem;
 }
