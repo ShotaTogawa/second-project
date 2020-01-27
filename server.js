@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "variables.env" });
 require("./db/mongoose");
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 const path = "/graphql";
