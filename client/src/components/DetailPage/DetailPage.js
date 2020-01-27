@@ -7,11 +7,9 @@ import classes from "../Result/result.css";
 import { Image, Feed, Icon, Button } from "semantic-ui-react";
 import Error from "../Error";
 import WithSession from "../WithSession";
-import { get } from "mongoose";
 
 class DetailPage extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <Query
@@ -20,7 +18,6 @@ class DetailPage extends Component {
         >
           {({ data, loading, error }) => {
             if (loading) return <Loading />;
-            console.log(data);
             return (
               <div>
                 <div

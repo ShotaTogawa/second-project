@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
 import WithSession from "../WithSession";
 import { Mutation } from "react-apollo";
-import { FOLLOW_USER, UNFOLLOW_USER, GET_USER } from "../../queries";
+import { FOLLOW_USER, UNFOLLOW_USER } from "../../queries";
 
 class FollowFrined extends Component {
   state = {
