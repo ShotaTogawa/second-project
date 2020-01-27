@@ -5,7 +5,7 @@ import { Mutation } from "react-apollo";
 import { UNLIKE_TWEET, GET_CURRENT_USER } from "../../queries";
 import WithSession from "../WithSession";
 
-class FabCard extends Component {
+class FavCard extends Component {
   handleClick = unlikeTweet => {
     unlikeTweet().then(async ({ data }) => {
       await this.props.refetch();
@@ -13,27 +13,27 @@ class FabCard extends Component {
   };
 
   render() {
-    const { userId, fab } = this.props;
+    const { userId, fav } = this.props;
     return (
-      <Card>
+      <Card key={fav._id}>
         <Card.Content>
           <Image
             floated="right"
             size="mini"
             src="/images/avatar/large/steve.jpg"
           />
-          <Card.Header>{fab.title}</Card.Header>
-          <Card.Meta>{fab.likes} likes</Card.Meta>
-          <Card.Description>tag: {fab.tag}</Card.Description>
+          <Card.Header>{fav.title}</Card.Header>
+          <Card.Meta>{fav.likes} likes</Card.Meta>
+          <Card.Description>tag: {fav.tag}</Card.Description>
         </Card.Content>
         <Card.Content>
           <div className="ui two buttons">
             <Button basic color="green">
-              <Link to={`/${fab._id}`}>Detail</Link>
+              <Link to={`/${fav._id}`}>Detail</Link>
             </Button>
             <Mutation
               mutation={UNLIKE_TWEET}
-              variables={{ _id: fab._id, userId }}
+              variables={{ _id: fav._id, userId }}
             >
               {unlikeTweet => (
                 <Button
@@ -52,4 +52,4 @@ class FabCard extends Component {
   }
 }
 
-export default WithSession(withRouter(FabCard));
+export default WithSession(withRouter(FavCard));

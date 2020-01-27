@@ -22,7 +22,7 @@ import Result from "./components/Result/Result";
 import ResultForm from "./components/Result/ResultForm";
 import MyPage from "./components/MyPage/MyPage";
 import UserPage from "./components/MyPage/UserPage";
-import FabList from "./components/Favotites/FabList";
+import FavList from "./components/Favotites/FavList";
 import DetailPage from "./components/DetailPage/DetailPage";
 
 const client = new ApolloClient({
@@ -66,7 +66,7 @@ const Root = ({ refetch, session }) => (
       <Route
         path="/user/favorites"
         exact
-        render={() => <FabList session={session} />}
+        render={() => <FavList session={session} />}
       />
       <Route
         path="/user/:userId"

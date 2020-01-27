@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { Card, Image, Button } from "semantic-ui-react";
-import classes from "./fab.css";
+import classes from "./fav.css";
 import WithSession from "../WithSession";
-import FabCard from "./FabCard";
+import FavCard from "./FavCard";
 
-class FabList extends Component {
+class FavList extends Component {
   renderCards = () => {
     const { _id, favorites } = this.props.session.getCurrentUser;
-    return favorites.map(fab => {
-      return <FabCard userId={_id} fab={fab} />;
+    return favorites.map(fav => {
+      return <FavCard userId={_id} fav={fav} />;
     });
   };
   render() {
     return (
-      <div className="FabContainer" style={classes.FabContainer}>
+      <div className="FavContainer" style={classes.FavContainer}>
         <h2 style={{ textAlign: "center" }}>Favorites List</h2>
         <div className="CardContainer">
           <Card.Group>{this.renderCards()}</Card.Group>
@@ -23,4 +23,4 @@ class FabList extends Component {
   }
 }
 
-export default WithSession(FabList);
+export default WithSession(FavList);
