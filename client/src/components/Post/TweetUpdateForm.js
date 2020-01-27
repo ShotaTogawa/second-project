@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Form, Checkbox, Button } from "semantic-ui-react";
 import classes from "./tweet.css";
 import CKEditor from "react-ckeditor-component";

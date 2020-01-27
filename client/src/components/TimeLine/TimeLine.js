@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import classes from "./timeline.css";
-import { Feed, Button, Icon } from "semantic-ui-react";
+import { Feed, Button } from "semantic-ui-react";
 import { Query, Mutation } from "react-apollo";
 import Loading from "../Loading";
 import Comments from "../Comment/Comments";

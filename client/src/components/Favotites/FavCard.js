@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card, Image, Button } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
-import { UNLIKE_TWEET, GET_CURRENT_USER } from "../../queries";
+import { UNLIKE_TWEET } from "../../queries";
 import WithSession from "../WithSession";
 
 class FavCard extends Component {
