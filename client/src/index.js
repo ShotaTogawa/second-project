@@ -28,8 +28,7 @@ import DetailPage from "./components/DetailPage/DetailPage";
 dotenv.config({ path: "variables.env" });
 
 const client = new ApolloClient({
-  uri: "https://keeptrail.herokuapp.com/graphql",
-  // uri: "http://localhost:4000/graphql",
+  uri: process.env.REACT_APP_TARGET_URL,
   fetchOptions: {
     credentials: "include"
   },
