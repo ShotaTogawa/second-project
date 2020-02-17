@@ -7,7 +7,6 @@ import {
   Redirect
 } from "react-router-dom";
 import ApolloClient from "apollo-boost";
-import dotenv from "dotenv";
 import { ApolloProvider } from "react-apollo";
 import "./index.css";
 import "semantic-ui-css/semantic.min.css";
@@ -25,10 +24,8 @@ import UserPage from "./components/MyPage/UserPage";
 import FavList from "./components/Favotites/FavList";
 import DetailPage from "./components/DetailPage/DetailPage";
 
-dotenv.config({ path: "variables.env" });
-
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_TARGET_URL,
+  uri: process.env.REACT_APP_SERVER_URL,
   fetchOptions: {
     credentials: "include"
   },
