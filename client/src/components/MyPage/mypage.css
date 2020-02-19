@@ -22,6 +22,14 @@
   height: 15rem;
 }
 
+.ImageUpload {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 15rem;
+}
+
 .ProfileInfo {
   display: flex;
   justify-content: center;

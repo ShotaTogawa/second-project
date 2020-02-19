@@ -121,6 +121,13 @@ module.exports = {
       return { token: createToken(user, process.env.SECRET, "1hr") };
     },
     // user
+    updateAvatar: async (parent, { _id, avatar }, ctx) => {
+      try {
+        await User.findByIdAndUpdate({ _id }, { avatar });
+      } catch (e) {
+        res.send(e);
+      }
+    },
     deleteUser: async (parent, { _id }, ctx) => {
       try {
         await User.findByIdAndDelete(_id);

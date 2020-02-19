@@ -2,11 +2,45 @@ import React, { Component } from "react";
 import classes from "./mypage.css";
 import { Image, Table, Button } from "semantic-ui-react";
 import { withRouter, Link } from "react-router-dom";
-import { Query } from "react-apollo";
-import { GET_TWEETS } from "../../queries";
+import { Query, Mutation } from "react-apollo";
+import { GET_TWEETS, UPDATE_AVATAR } from "../../queries";
 import Loading from "../Loading";
 
 class MyPage extends Component {
+  state = {
+    file: null,
+    image: "",
+    loading: false
+  };
+
+  handleSubmit = async (event, updateAvatar) => {
+    event.preventDefault();
+    const file = this.state.file;
+    const data = new FormData();
+    data.append("file", file[0]);
+    data.append("upload_preset", "keeptrail");
+    this.setState({ loding: true });
+    const res = await fetch(process.env.REACT_APP_API_URL, {
+      method: "POST",
+      body: data
+    });
+    const uplodedfile = await res.json();
+    this.setState({ image: uplodedfile.secure_url, loading: false });
+    if (this.state.file) {
+      await updateAvatar()
+        .then(({ data }) => {
+          console.log(data);
+          this.props.history.push("/user");
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  };
+
+  uploadImage = async e => {
+    this.setState({ file: e.target.files });
+  };
   render() {
     return (
       <>
@@ -14,9 +48,36 @@ class MyPage extends Component {
           <div className="ProfileContainer">
             <div className="ProfileImage">
               <Image
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNvNK0vdBneJz5FHoIggrA7UruNCVKsTfUxixvlA6KOMn3xd0J"
+                src={this.props.session.getCurrentUser.avatar}
                 size="medium"
               />
+            </div>
+            <div className="ImageUpload">
+              <Mutation
+                mutation={UPDATE_AVATAR}
+                variables={{
+                  _id: this.props.session.getCurrentUser._id,
+                  avatar: this.state.image
+                }}
+                update={this.updateCach}
+              >
+                {(updateAvatar, { data, loading, error }) => {
+                  console.log(data);
+                  if (loading) return <Loading />;
+                  return (
+                    <form
+                      onSubmit={event => this.handleSubmit(event, updateAvatar)}
+                    >
+                      <input
+                        type="file"
+                        name="file"
+                        onChange={e => this.uploadImage(e)}
+                      />
+                      <Button size="mini">update</Button>
+                    </form>
+                  );
+                }}
+              </Mutation>
             </div>
             <div className="ProfileInfo" style={classes.ProfileInfo}>
               <h2>{this.props.session.getCurrentUser.name}</h2>

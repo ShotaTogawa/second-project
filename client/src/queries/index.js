@@ -8,6 +8,7 @@ export const GET_CURRENT_USER = gql`
       _id
       name
       email
+      avatar
       favorites {
         _id
         title
@@ -51,6 +52,14 @@ export const SIGNIN_USER = gql`
   mutation($email: String!, $password: String!) {
     signinUser(email: $email, password: $password) {
       token
+    }
+  }
+`;
+
+export const UPDATE_AVATAR = gql`
+  mutation($_id: ID!, $avatar: String!) {
+    updateAvatar(_id: $_id, avatar: $avatar) {
+      _id
     }
   }
 `;
