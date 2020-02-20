@@ -10,6 +10,8 @@ class Comments extends Component {
     openField: false
   };
 
+  componentDidMount() {}
+
   handleChange = event => {
     this.setState({ comment: event.target.value });
   };
@@ -39,16 +41,15 @@ class Comments extends Component {
     return comments.map(comment => {
       return (
         <Comment key={comment._id}>
-          <Comment.Avatar src="/images/avatar/small/matt.jpg" />
+          <Comment.Avatar src={comment.user.avatar} />
           <Comment.Content>
-            <Comment.Author as="a">Matt</Comment.Author>
+            <Comment.Author as="a">{comment.user.name}</Comment.Author>
             <Comment.Metadata>
               <div>{comment.createdAt}</div>
             </Comment.Metadata>
             <Comment.Text>{comment.comment}</Comment.Text>
             {comment.userId === this.props.userId ? (
               <List horizontal size="mini">
-                {/* <List.Item as="a">Edit</List.Item> */}
                 <Mutation
                   mutation={DELETE_COMMENT}
                   variables={{ _id: comment._id }}

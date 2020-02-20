@@ -24,7 +24,7 @@ class TweetForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  updateCach = (cache, { data: { postTweet } }) => {
+  updateCache = (cache, { data: { postTweet } }) => {
     const { getPublicTweets } = cache.readQuery({ query: GET_PUBLIC_TWEETS });
     cache.writeQuery({
       query: GET_PUBLIC_TWEETS,
@@ -54,7 +54,7 @@ class TweetForm extends Component {
           mutation={POST_TWEET}
           variables={{ userId: _id, title, tweet, tag, public: isPublic }}
           refetchQueries={() => [{ query: GET_PUBLIC_TWEETS }]}
-          update={this.updateCach}
+          update={this.updateCache}
         >
           {(postTweet, { data, loading, error }) => {
             if (loading) return <Loading />;

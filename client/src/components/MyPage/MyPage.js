@@ -31,7 +31,7 @@ class MyPage extends Component {
       await updateAvatar()
         .then(({ data }) => {
           console.log(data);
-          this.props.history.push("/user");
+          this.props.history.push("/");
         })
         .catch(e => {
           console.log(e);
@@ -64,7 +64,6 @@ class MyPage extends Component {
                   _id: this.props.session.getCurrentUser._id,
                   avatar: this.state.image
                 }}
-                update={this.updateCach}
               >
                 {(updateAvatar, { data, loading, error }) => {
                   console.log(data);
@@ -86,7 +85,6 @@ class MyPage extends Component {
             </div>
           </div>
         </div>
-        {/* <div style={{ margin: "1.5rem 0" }}></div> */}
         <div className="OwnTrailContainer">
           <div style={{ textAlign: "center", marginTop: "1rem" }}>
             <h2>{this.props.session.getCurrentUser.name}</h2>
@@ -127,11 +125,11 @@ class MyPage extends Component {
             </Table.Body>
           </Table>
 
-          <div className="PagenationButton" style={classes.PagenationButton}>
+          {/* <div className="PagenationButton" style={classes.PagenationButton}>
             <Button size="mini" color="twitter" circular>
               Load more...
             </Button>
-          </div>
+          </div> */}
         </div>
       </>
     );

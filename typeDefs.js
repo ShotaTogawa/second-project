@@ -37,6 +37,7 @@ module.exports = gql`
     tweetId: String!
     comment: String!
     createdAt: String
+    user: User
   }
 
   type Result {

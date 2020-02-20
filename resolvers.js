@@ -79,9 +79,11 @@ module.exports = {
     // },
     // comment
     getComments: async (parent, { tweetId }, ctx) => {
-      const comments = await Comment.find({ tweetId }).sort({
-        createdAt: "desc"
-      });
+      const comments = await Comment.find({ tweetId })
+        .populate({ path: "user", modle: "User" })
+        .sort({
+          createdAt: "desc"
+        });
       return comments;
     },
     // result
@@ -276,7 +278,8 @@ module.exports = {
         const userComment = await new Comment({
           userId,
           tweetId,
-          comment
+          comment,
+          user: userId
         }).save();
         if (!comment) {
           throw new Error("Failed to comment");
