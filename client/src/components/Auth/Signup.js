@@ -83,6 +83,7 @@ class Signup extends Component {
             {(signupUser, { data, loading, error }) => {
               if (loading) return <Loading />;
               return (
+                // Fragment はこのように省略して書けます <></>。個人的には見やすいのでこっちのほうが好きです
                 <Fragment>
                   <Form
                     onSubmit={event => this.handleSubmit(event, signupUser)}
