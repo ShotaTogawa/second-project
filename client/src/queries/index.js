@@ -186,6 +186,10 @@ export const GET_COMMENTS = gql`
       userId
       comment
       createdAt
+      user {
+        avatar
+        name
+      }
     }
   }
 `;

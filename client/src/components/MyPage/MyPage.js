@@ -4,6 +4,7 @@ import { Image, Table, Button } from "semantic-ui-react";
 import { withRouter, Link } from "react-router-dom";
 import { Query, Mutation } from "react-apollo";
 import { GET_TWEETS, UPDATE_AVATAR } from "../../queries";
+import userImage from "../../assets/user.svg";
 import Loading from "../Loading";
 
 class MyPage extends Component {
@@ -30,7 +31,7 @@ class MyPage extends Component {
       await updateAvatar()
         .then(({ data }) => {
           console.log(data);
-          this.props.history.push("/user");
+          this.props.history.push("/");
         })
         .catch(e => {
           console.log(e);
@@ -48,7 +49,11 @@ class MyPage extends Component {
           <div className="ProfileContainer">
             <div className="ProfileImage">
               <Image
-                src={this.props.session.getCurrentUser.avatar}
+                src={
+                  this.props.session.getCurrentUser.avatar
+                    ? this.props.session.getCurrentUser.avatar
+                    : userImage
+                }
                 size="medium"
               />
             </div>
@@ -59,7 +64,6 @@ class MyPage extends Component {
                   _id: this.props.session.getCurrentUser._id,
                   avatar: this.state.image
                 }}
-                update={this.updateCach}
               >
                 {(updateAvatar, { data, loading, error }) => {
                   console.log(data);
@@ -79,20 +83,16 @@ class MyPage extends Component {
                 }}
               </Mutation>
             </div>
-            <div className="ProfileInfo" style={classes.ProfileInfo}>
-              <h2>{this.props.session.getCurrentUser.name}</h2>
-            </div>
           </div>
         </div>
-        {/* <div style={{ margin: "1.5rem 0" }}></div> */}
         <div className="OwnTrailContainer">
           <div style={{ textAlign: "center", marginTop: "1rem" }}>
-            <h2>Your Trail</h2>
+            <h2>{this.props.session.getCurrentUser.name}</h2>
           </div>
-          <div className="SortSection" style={classes.SortSection}>
+          {/* <div className="SortSection" style={classes.SortSection}>
             tag and hiduke
             <p>koko</p>
-          </div>
+          </div> */}
           <Table color="teal">
             <Table.Header>
               <Table.Row>
@@ -125,11 +125,11 @@ class MyPage extends Component {
             </Table.Body>
           </Table>
 
-          <div className="PagenationButton" style={classes.PagenationButton}>
+          {/* <div className="PagenationButton" style={classes.PagenationButton}>
             <Button size="mini" color="twitter" circular>
               Load more...
             </Button>
-          </div>
+          </div> */}
         </div>
       </>
     );

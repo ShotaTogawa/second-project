@@ -17,11 +17,11 @@ class FavCard extends Component {
     return (
       <Card key={fav._id}>
         <Card.Content>
-          <Image
+          {/* <Image
             floated="right"
             size="mini"
             src="/images/avatar/large/steve.jpg"
-          />
+          /> */}
           <Card.Header>{fav.title}</Card.Header>
           <Card.Meta>{fav.likes} likes</Card.Meta>
           <Card.Description>tag: {fav.tag}</Card.Description>

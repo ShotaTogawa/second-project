@@ -12,6 +12,7 @@ import {
   GET_COMMENTS
 } from "../../queries";
 import { withRouter, Link } from "react-router-dom";
+import userImage from "../../assets/user.svg";
 
 class TimeLine extends Component {
   state = {
@@ -45,7 +46,11 @@ class TimeLine extends Component {
                     <Fragment key={tweet._id}>
                       <Feed.Event>
                         <Feed.Label>
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGKHemZfIsHqDZM3k7tXRYLknh5yOFXYBeZpP9tpvKftKJvIkz" />
+                          <img
+                            src={
+                              tweet.user.avatar ? tweet.user.avatar : userImage
+                            }
+                          />
                         </Feed.Label>
                         <Feed.Content>
                           <Feed.Summary>
