@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Image, Button } from "semantic-ui-react";
+import { Card, Button } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { UNLIKE_TWEET } from "../../queries";

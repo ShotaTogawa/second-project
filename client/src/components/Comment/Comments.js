@@ -3,6 +3,7 @@ import { Button, Comment, Form, Header, List } from "semantic-ui-react";
 import { Mutation } from "react-apollo";
 import { ADD_COMMENT, DELETE_COMMENT } from "../../queries";
 import Loading from "../Loading";
+import userImage from "../../assets/user.svg";
 
 class Comments extends Component {
   state = {
@@ -41,7 +42,9 @@ class Comments extends Component {
     return comments.map(comment => {
       return (
         <Comment key={comment._id}>
-          <Comment.Avatar src={comment.user.avatar} />
+          <Comment.Avatar
+            src={comment.user.avatar ? comment.user.avatar : userImage}
+          />
           <Comment.Content>
             <Comment.Author as="a">{comment.user.name}</Comment.Author>
             <Comment.Metadata>
