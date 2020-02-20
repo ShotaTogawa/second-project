@@ -5,6 +5,7 @@ import { Query, Mutation } from "react-apollo";
 import { GET_TWEETS, UPDATE_AVATAR } from "../../queries";
 import userImage from "../../assets/user.svg";
 import Loading from "../Loading";
+import classes from "./mypage.css";
 
 class MyPage extends Component {
   state = {
@@ -44,7 +45,7 @@ class MyPage extends Component {
   render() {
     return (
       <>
-        <div className="MyPageContainer">
+        <div style={classes.MyPageContainer} className="MyPageContainer">
           <div className="ProfileContainer">
             <div className="ProfileImage">
               <Image
