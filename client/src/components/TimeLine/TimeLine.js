@@ -50,6 +50,7 @@ class TimeLine extends Component {
                             src={
                               tweet.user.avatar ? tweet.user.avatar : userImage
                             }
+                            alt="avatar"
                           />
                         </Feed.Label>
                         <Feed.Content>

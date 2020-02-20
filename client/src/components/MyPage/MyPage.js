@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import classes from "./mypage.css";
 import { Image, Table, Button } from "semantic-ui-react";
 import { withRouter, Link } from "react-router-dom";
 import { Query, Mutation } from "react-apollo";
