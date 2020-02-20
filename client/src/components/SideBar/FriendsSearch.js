@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { Search, List, Image } from "semantic-ui-react";
 import classes from "./sidebar.css";
 import { Link } from "react-router-dom";
+import userImage from "../../assets/user.svg";
 
 class FriendSearch extends Component {
   renderFriends = () => {
     return this.props.friends.map(friend => {
       return (
         <List.Item key={friend._id}>
-          <Image avatar src={friend.avatar} />
+          <Image avatar src={friend.avatar ? friend.avatar : userImage} />
           <List.Content verticalAlign="middle">
             <Link to={`user/${friend._id}`}>
               <List.Header as="a">{friend.name}</List.Header>

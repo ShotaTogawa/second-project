@@ -6,6 +6,7 @@ import { Query } from "react-apollo";
 import { GET_TWEETS, GET_USER } from "../../queries";
 import Loading from "../Loading";
 import FollowFriends from "./FollowFrined";
+import userImage from "../../assets/user.svg";
 
 class UserPage extends Component {
   render() {
@@ -24,7 +25,9 @@ class UserPage extends Component {
                   <div className="UserProfileImage">
                     <Image
                       // {data.getUser.avatar}
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNvNK0vdBneJz5FHoIggrA7UruNCVKsTfUxixvlA6KOMn3xd0J"
+                      src={
+                        data.getUser.avatar ? data.getUser.avatar : userImage
+                      }
                       size="medium"
                     />
                   </div>
