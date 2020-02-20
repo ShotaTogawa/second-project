@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Comment, Form, Header, List } from "semantic-ui-react";
+// 下にも書いていますが、この様に宣言してあげるとみやすくなるかと思います
+import { Content, Avater, Author, Metadata, Text } from "semantic-ui-react/Comment";
 import { Mutation } from "react-apollo";
 import { ADD_COMMENT, DELETE_COMMENT } from "../../queries";
 import Loading from "../Loading";
@@ -28,6 +30,7 @@ class Comments extends Component {
       });
   };
 
+  // コードをコメントアウトして残しておく際は、なぜ残すのかが書いてあると後で見たメンバーが助かります
   // updateCach = (cache, { data: { addComment } }) => {
   //   const { getPublicTweets } = cache.readQuery({ query: GET_PUBLIC_TWEETS });
   //   cache.writeQuery({
@@ -42,6 +45,7 @@ class Comments extends Component {
     return comments.map(comment => {
       return (
         <Comment key={comment._id}>
+          {/* <Comment.~> の記述が冗長なので、import の仕方を変えると見やすくなると思います。上に例を書いておきます。 */}
           <Comment.Avatar
             src={comment.user.avatar ? comment.user.avatar : userImage}
           />

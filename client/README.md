@@ -1,3 +1,5 @@
+面接に持っていく前に、README に概要やこだわっている部分を書いておいてあげると面接官に見てもらいたいポイントに集中してもらえるかも知れません
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
