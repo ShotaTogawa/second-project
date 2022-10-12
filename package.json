@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/ShotaTogawa/second-project#readme",
   "dependencies": {
-    "apollo-server": "^2.9.15",
+    "apollo-server": "^2.25.4",
     "apollo-server-express": "^2.9.15",
     "bcrypt": "^3.0.7",
     "concurrently": "^5.0.2",
